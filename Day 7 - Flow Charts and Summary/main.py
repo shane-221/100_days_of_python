@@ -1,7 +1,7 @@
         #  Todo: Pre conditions prep
 import random
 from word_list import word_list
-from ASCI import stages
+from ASCI import stages,logo
 
         # TODO: Randomly choose a word from the word list and assign it to the chosen word. Then print it.
 chosen_word = random.choice(word_list)
@@ -21,9 +21,11 @@ guessed_letters=[]
         # Todo: Opening set of outputs
 print(f"""
         Welcome to Hangman. We have randomly  chosen a word. You have 6 lives until the game ends. 
+{logo}
 {stages[stage_pos]}
 {display}
-Chosen word:{chosen_word}
+            There are {len(chosen_word)} letters in your word. 
+            Chosen word:{chosen_word}
         """)
 
         # TODO: Ending of the game
@@ -34,9 +36,8 @@ while not game_end:
     guess_letter =  input("         Please choose the letter: \n")
     guess_letter= guess_letter.lower()
 
-
             # TODO: Check if the letter user guessed is one of the letters in the chosen word.
-                    # TODO: Initial check to see if is already chosen
+                    # TODO: Initial check to see if is already                                                                                                                                                                          chosen
     if guess_letter in guessed_letters:
         print("Please choose another value. You've already chosen this once")
                     # TODO: What happens when the letter is in the word
@@ -55,14 +56,16 @@ while not game_end:
         lives=lives-1
         stage_pos=stage_pos+1
         guessed_letters.append(guess_letter)
-        print("That's not a correct letter!")
+        print(f"You've guessed {guess_letter}. That's not the correct letter!")
         print(f"You have {lives} life left! ")
         print(stages[stage_pos])
 
     # TODO: Ending of the game
     if lives == 0:
-        game_end == True
-        print(" Im sorry but yopu have not guessed the letters correctly!")
-            
-    elif "_" not in display:
+        game_end = True
+        print(" Im sorry but you have not guessed the letters correctly!")
+        print( "The word was {chosen_word}")
+
+    if "_" not in display:
         print("Well Done! You've guessed the word correctly.")
+        game_end = True
