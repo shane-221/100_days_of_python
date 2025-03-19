@@ -1,5 +1,5 @@
-from operator import truediv
-
+from Art import logo
+import time
 
 # TODO 1: Applying the operations
 def operation(first_number, operations, second_number  ):
@@ -36,14 +36,17 @@ def next_step():
 # TODO 3: GAME BEGINS
 replay=True
 while replay:
+    print(logo)
+
     # TODO : Initial opening of the game
-    number_one = int(input("What is the first number?"))
-    maths = input(" Which operation would you like to perform: "
+    number_one = int(input("What is the first number?\n"))
+    maths = input(""" Which operation would you like to perform: 
                   "+"
                   "x"
                   "/"
-                  "-")
-    number_two = int(input("What is the next number?"))
+                  "-"
+                  \n""")
+    number_two = int(input("What is the next number?\n"))
 
     output = operation(first_number=number_one, operations=maths, second_number=number_two)
     output= int(output)
@@ -58,23 +61,26 @@ while replay:
 
     elif  next_action=="n":
         replay=True
+        print("\n"*50)
                             # Redundant but useful for understanding the flow of the game
     elif next_action=="y":
         continue_loop= True
 
         while continue_loop:
-            second_maths = input(" Which operation would you like to perform: "
+            second_maths = input(""" Which operation would you like to perform: "
                                  "+"
                                  "x"
                                  "/"
-                                 "-")
-            number_three = int(input("What is the next number?"))
+                                 "-"
+                                 \n""")
+            number_three = int(input("What is the next number?\n"))
             output_2 = operation(first_number=output, second_number=number_three, operations=second_maths)
             print(f"Your output is {output_2}")
             output = output_2
-            replay_loop=input("Would you like to keep using this number?")
+            replay_loop=input("Would you like to keep using this number?\n")
             if replay_loop=="n":
                 continue_loop=False
+                print("\n"*50)
 
     else:
         print("This is not an option. Please restart the game!")
