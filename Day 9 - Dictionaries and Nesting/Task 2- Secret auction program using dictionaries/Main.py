@@ -36,7 +36,5 @@ for i in auction:
     if  auction[i]>highest_value[1]:
         highest_value[1]=auction[i]
         highest_value[0]=i
-
-
 time.sleep(3)
 print(f"The winner of the auction is {highest_value[0]} with {highest_value[1]} as the bid.")
