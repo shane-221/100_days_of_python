@@ -10,39 +10,45 @@ game_working = True
 def difficulty_function():
     difficulty = input(" Choose a difficulty. Type 'easy' or 'hard':").lower()
     return difficulty
+                                                                             # Choosing the difficulty
 
-def number_checker(lives=Lives):
+def number_checker(lives, random_number_final) :
     global number_loop
     global game_working
 
+
     while number_loop:
         chosen_number = int(input("Please choose a number:"))
-        if lives == 1:
+        if lives < 1:
             print("I'm sorry but you've lost the game!")
             number_loop = False
             game_working=False
-            print(f"Lives:{lives}")
-        elif chosen_number > random_number:
+            print(f" You have {lives} remaining!")
+                                                                                # method 1 of loop breaking when lives become less than 1
+        elif chosen_number > random_number_final:
             print(" You are too high!")
-            lives = lives - 1
-            print(f"Lives:{lives}")
-        elif chosen_number < random_number:
+            lives -= 1
+            print(f" You have {lives} remaining!")
+                                                                                # What happens when the number is too high
+        elif chosen_number < random_number_final:
             print("You are too low!")
-            lives = lives - 1
-            print(f"Lives:{lives}")
-        elif chosen_number == random_number:
+            lives -= 1
+            print(f" You have {lives} remaining!")
+                                                                                # What happens when the number is too low
+        elif chosen_number == random_number_final:
             print("Well done, that's the correct number")
             number_loop = False
             game_working= False
-            print(f"Lives:{lives}")
-
+            print(f" You have {lives} remaining!")
+                                                                                # What happens when you get to the correct number
         # TODO 2: Begin the game
                 #TODO 1a: Opening the game up
 
-def game_start(random_number):
+def game_start():
     print("""Welcome to the number guessing game!
             I'm thinking of a number between 1 and 100. 
         """)
+                                                                                # Random number gets chosen every time
     random_number = random.randint(1, 100)
     print(f"random number: {random_number}")
 
@@ -51,15 +57,17 @@ def game_start(random_number):
     while game_working:
         global Lives
         difficulty_choice = difficulty_function()
+                                                    # This means that the function will only run once.
+                                                    # Choice of difficulty
+                                                        ## In essence the game working loop is for the difficulty top account for input other than easy or hard
+                                                        ### The number_loop lopp is for the program to continue until either they lose the game or win the game.
         if difficulty_choice == "easy":
             Lives = 10
-            while number_loop:
-                number_checker(lives=Lives)
+            number_checker(lives=Lives, random_number_final=random_number)
 
         elif difficulty_choice == "hard":
             Lives = 5
-            while number_loop:
-                number_checker(lives=Lives)
+            number_checker(lives=Lives, random_number_final=random_number)
 
         else:
             print(" Please choose one of the options")
