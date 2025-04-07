@@ -19,6 +19,8 @@ def number_checker(lives, random_number_final) :
 
     while number_loop:
         chosen_number = int(input("Please choose a number:"))
+                                                                                # Need to account for cases where they mistype the cases. But haven't been
+                                                                                ## taught how to do that
         if lives < 1:
             print("I'm sorry but you've lost the game!")
             number_loop = False
@@ -50,7 +52,6 @@ def game_start():
         """)
                                                                                 # Random number gets chosen every time
     random_number = random.randint(1, 100)
-    print(f"random number: {random_number}")
 
     # TODO 1b: Choosing difficulty and running it as a loop in case of the else statement.
 
