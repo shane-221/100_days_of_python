@@ -1,91 +1,71 @@
-import random                                                                                                               # Need to fix how the random choice picks new comparisons
-                                                                                                                            # Need to fix what happens when the user chooses things other than a or B
+import random                                                                                                                                                                                                                                          # Need to fix what happens when the user chooses things other than a or B
 from game_data import data
 from Art import logo,vs
 
+def check_function(comparison_a, comparison_b,):
+    global run_game, total_score
+    print(f"Compare A: {comparison_a['name']},a {comparison_a['description']}, from {comparison_a['country']}")
+    print(vs)
+    print(f"Compare B: {comparison_b['name']},a {comparison_b['description']}, from {comparison_b['country']}")
 
+    correct_answer = ""
+    if comparison_a["follower_count"] > comparison_b["follower_count"]:
+        correct_answer = "a"
+    elif comparison_b["follower_count"] > comparison_a["follower_count"]:
+        correct_answer = "b"
+
+    user_choice = input("Who has more followers? Type A or B:").lower()
+
+    if user_choice == correct_answer:
+        print("That's the correct answer")
+        total_score += 1
+        print(f"Score:{total_score}")
+
+
+    else:
+        print("That's wrong ")
+        print(f"Your final score is:{total_score}")
+        run_game=False
+
+
+total_score = 0
 repeat_game=True                                                                                                         #   TODO 1: Run the first set of iteration + Running of the xtra lopp from the finish
 while repeat_game:                                                                                                                     # Todo 1a: Pull the random choice from the list
-    score = 0
     print(f"""
         {logo}
         Welcome to the Higher or Lower game! 
-        Please choose the options that has the higher level of followers on instagram. 
+        Please choose the options that has the higher
+         level of followers on instagram. 
         """)
     chosen_items=[]
     run_game = True
     while run_game:
-        comparison_A = random.choice(data)
-        comparison_B = random.choice(data)
-        chosen_items.append(comparison_B)
-        chosen_items.append(comparison_A)
+        comparison_1 = random.choice(data)
+        comparison_2 = random.choice(data)
+        chosen_items.append(comparison_1)
+        chosen_items.append(comparison_2)
 
-        if comparison_B and comparison_A not in chosen_items:                                                                           # Todo 1b: Then offer the comparisons + Check if they are in the list
-            print(f"Compare A: {comparison_A['name']},a {comparison_A['description']}, from {comparison_A['country']}")
-            print(vs)
-            print(f"Compare B: {comparison_B['name']},a {comparison_B['description']}, from {comparison_B['country']}")
+        if comparison_1 and comparison_2 not in chosen_items:                                                                           # Todo 1b: Then offer the comparisons + Check if they are in the list
+            check_function(comparison_a=comparison_1, comparison_b=comparison_2)
 
-                                                                                                                                        # Todo 1c: Correct answer function
-            correct_answer = ""
-            if comparison_A["follower_count"] > comparison_B["follower_count"]:
-                correct_answer = "a"
-            elif comparison_B["follower_count"] > comparison_A["follower_count"]:
-                correct_answer = "b"
-                                                                                                                                        # Todo 1d: Choice being made for A or B
-            user_choice = input("Who has more followers? Type A or B:").lower()
-
-                                                                                                                                        # Todo 1e: Work out whether the user is correct
-
-            if user_choice == correct_answer:
-                print("That's the correct answer")
-                score += 1
-                print(f"Score:{score}")
-
-            else:
-                print("That's wrong ")
-                run_game = False
-                print(f"Your final score is:{score}")
-                                                                                                                                        # Todo 1f: Would they like to play the game again?
-                repeat_game = input("Would you like to play the game again?Y or N ").lower()
-                if repeat_game == "y":
-                    repeat_game = True
-                else:
-                    repeat_game = False
-
+                                                                                                                                        # Todo 1c: Choose another two random ones since the first two has already been chosen and
+                                                                                                                                        ## deposited in the chosen items list
         else:
-            comparison_A = random.choice(data)
-            comparison_B = random.choice(data)
-            chosen_items.append(comparison_B)
-            chosen_items.append(comparison_A)
-            print(f"Compare A: {comparison_A['name']},a {comparison_A['description']}, from {comparison_A['country']}")
-            print(vs)
-            print(f"Compare B: {comparison_B['name']},a {comparison_B['description']}, from {comparison_B['country']}")
+            comparison_3 = random.choice(data)
+            comparison_4 = random.choice(data)
+            chosen_items.append(comparison_3)
+            chosen_items.append(comparison_4)
 
-            correct_answer = ""
-            if comparison_A["follower_count"] > comparison_B["follower_count"]:
-                correct_answer = "a"
-            elif comparison_B["follower_count"] > comparison_A["follower_count"]:
-                correct_answer = "b"
+            check_function(comparison_a=comparison_3, comparison_b=comparison_4)
 
-            user_choice = input("Who has more followers? Type A or B:").lower()
+                                                                                                                                        # Todo 1d: Chance to redo the game if they need
+    restart_game = input("Would you like to play the game again?Y or N ").lower()
+    if restart_game == "y":
+        repeat_game = True
+        total_score=0
+    else:
+        repeat_game = False
 
-
-
-            if user_choice == correct_answer:
-                print("That's the correct answer")
-                score += 1
-                print(f"Score:{score}")
-
-            else:
-                print("That's wrong ")
-                run_game = False
-                print(f"Your final score is:{score}")
-
-                repeat_game = input("Would you like to play the game again?Y or N ").lower()
-                if repeat_game == "y":
-                    repeat_game = True
-                else:
-                    repeat_game = False
 
 
 
