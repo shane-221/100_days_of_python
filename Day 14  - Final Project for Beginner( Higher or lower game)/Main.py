@@ -16,11 +16,13 @@ def check_function(comparison_a, comparison_b,):
 
     user_choice = input("Who has more followers? Type A or B:").lower()
 
+    while user_choice not in ["a", "b"]:                                                                                            # From copilot But useful to do.
+        user_choice = input("Invalid choice. Please type A or B: ").lower()
+
     if user_choice == correct_answer:
         print("That's the correct answer")
         total_score += 1
         print(f"Score:{total_score}")
-
 
     else:
         print("That's wrong ")
@@ -45,9 +47,8 @@ while repeat_game:                                                              
         chosen_items.append(comparison_1)
         chosen_items.append(comparison_2)
 
-        if comparison_1 and comparison_2 not in chosen_items:                                                                           # Todo 1b: Then offer the comparisons + Check if they are in the list
+        if comparison_1 not in chosen_items and comparison_2 not in chosen_items:                                                               # Todo 1b: Then offer the comparisons + Check if they are in the list
             check_function(comparison_a=comparison_1, comparison_b=comparison_2)
-
                                                                                                                                         # Todo 1c: Choose another two random ones since the first two has already been chosen and
                                                                                                                                         ## deposited in the chosen items list
         else:
@@ -57,7 +58,6 @@ while repeat_game:                                                              
             chosen_items.append(comparison_4)
 
             check_function(comparison_a=comparison_3, comparison_b=comparison_4)
-
                                                                                                                                         # Todo 1d: Chance to redo the game if they need
     restart_game = input("Would you like to play the game again?Y or N ").lower()
     if restart_game == "y":
