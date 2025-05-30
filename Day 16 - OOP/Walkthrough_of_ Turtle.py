@@ -1,4 +1,5 @@
 from turtle import Turtle, Screen
+from prettytable import prettytable, PrettyTable
 
 # Need to import the class of the turtle class
 
@@ -12,8 +13,13 @@ timmy.forward(100)
     # Printing Timmy.
 print(timmy)
 
-
-
+# Importing packages to build tables
+table= PrettyTable()
+    # Using methods
+table.add_column("Pokemon",["charmander", "pikachu",  "Squirtle"])
+    # Using attributes
+table.align ="c"
+print(table)
 
 # Exit on Click
 my_screen= Screen()
