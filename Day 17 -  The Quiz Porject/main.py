@@ -3,9 +3,9 @@ from data import question_data
 
 object_question_bank=[]
 
-    # Todo 1 : Creation of a qquestion bank using the class:
+    # Todo 1 : Creation of a question bank in a list using the class:
 for i in question_data:
-    question = Question(i["text"], i["answer"])
-    object_question_bank.append(question)
+    new_question = Question(i["text"], i["answer"])
+    object_question_bank.append(new_question)
 
-print(object_question_bank)
+    # Todo 2: Bring up one of those questions. 
