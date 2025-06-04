@@ -1,0 +1,3 @@
+question= Question(question_data["text"], question_data["answer"])
+    object_question_bank+=question
+print(object_question_bank)
