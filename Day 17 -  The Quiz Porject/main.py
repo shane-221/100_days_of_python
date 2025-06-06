@@ -11,3 +11,9 @@ for i in question_data:
     # Todo 2: Bring up one of those questions.
 quiz = QuizBrain(object_question_bank)
 quiz.next_question()
+
+    # Todo 3: Keep the questions running as a loop until the list is completed
+while quiz.still_has_questions():
+    quiz.next_question()
+
+

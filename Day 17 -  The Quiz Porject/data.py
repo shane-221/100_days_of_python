@@ -1,17 +1,23 @@
 question_data = [
-    {"text": "A slug's blood is green.", "answer": "True"},
-    {"text": "The loudest animal is the African Elephant.", "answer": "False"},
-    {"text": "Approximately one quarter of human bones are in the feet.", "answer": "True"},
-    {"text": "The total surface area of a human lungs is the size of a football pitch.", "answer": "True"},
-    {
-        "text": "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.",
-        "answer": "True"},
-    {"text": "In London, UK, if you happen to die in the House of Parliament, you are entitled to a state funeral.",
-     "answer": "False"},
-    {"text": "It is illegal to pee in the Ocean in Portugal.", "answer": "True"},
-    {"text": "You can lead a cow down stairs but not up stairs.", "answer": "False"},
-    {"text": "Google was originally called 'Backrub'.", "answer": "True"},
-    {"text": "Buzz Aldrin's mother's maiden name was 'Moon'.", "answer": "True"},
-    {"text": "No piece of square dry paper can be folded in half more than 7 times.", "answer": "False"},
-    {"text": "A few ounces of chocolate can to kill a small dog.", "answer": "True"}
+    {"text": "The capital of France is Paris.", "answer": "True"},
+    {"text": "Python is a type of snake but not a programming language.", "answer": "False"},
+    {"text": "The Great Wall of China can be seen from space.", "answer": "False"},
+    {"text": "Water boils at 100 degrees Celsius at sea level.", "answer": "True"},
+    {"text": "The Earth is flat.", "answer": "False"},
+    {"text": "Shakespeare wrote 'Hamlet'.", "answer": "True"},
+    {"text": "Mount Everest is the tallest mountain in the world.", "answer": "True"},
+    {"text": "The human body has 206 bones.", "answer": "True"},
+    {"text": "An octopus has five hearts.", "answer": "False"},
+    {"text": "The speed of light is faster than the speed of sound.", "answer": "True"},
+    {"text": "Bananas grow on trees.", "answer": "False"},  # They grow on large herbs, not trees!
+    {"text": "The Amazon Rainforest is the largest rainforest in the world.", "answer": "True"},
+    {"text": "Pluto is still classified as a planet.", "answer": "False"},
+    {"text": "Goldfish have a three-second memory span.", "answer": "False"},  # Myth! They can remember for months.
+    {"text": "There are seven continents on Earth.", "answer": "True"},
+    {"text": "The sun is a planet.", "answer": "False"},
+    {"text": "Venus is the closest planet to the sun.", "answer": "False"},  # Mercury is the closest.
+    {"text": "The Mona Lisa was painted by Leonardo da Vinci.", "answer": "True"},
+    {"text": "A kilogram is heavier than a pound.", "answer": "True"},
+    {"text": "The Atlantic Ocean is the largest ocean on Earth.", "answer": "False"},  # The Pacific Ocean is the largest.
 ]
+
