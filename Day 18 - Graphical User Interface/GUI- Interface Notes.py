@@ -1,4 +1,5 @@
 from turtle import Turtle, Screen
+from random import random
 
 #Todo 1: The instance of Timmy the Turtle being created.
 
