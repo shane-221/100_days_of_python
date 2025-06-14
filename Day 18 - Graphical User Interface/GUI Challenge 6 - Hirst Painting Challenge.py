@@ -9,7 +9,7 @@ import random
 turtle.colormode(255)
 timmy=t.Turtle()
 timmy.penup()  # Lift the pen to avoid drawing a line
-timmy.goto(-200, 00)  # Move to the new starting position
+timmy.goto(-400, -200)  # Move to the new starting position
 timmy.pendown()
 
 # Todo:  Extract 10 colours from the image into a list. Can get the list and comment out the code as well( For learning
@@ -33,8 +33,8 @@ def circle_rows():
     timmy.pendown()
 
     # Todo: need the original conditions for the dot to start
-y=0
-x=-200
+y=-200
+x=-400
 n=0
     # Todo: Creating the loop for 10 rows on different levels
 while n<10:
