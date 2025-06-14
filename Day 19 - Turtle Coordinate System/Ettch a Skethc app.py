@@ -14,7 +14,9 @@ def move_backwards():
     tim.back(10)
 def clear():
     tim.clear()
+    tim.penup()
     tim.home()
+    tim.pendown()
 # Todo: Connect the functions to the keys
 screen.listen()
                 # Need to tell the key functions to listen to  the keys
