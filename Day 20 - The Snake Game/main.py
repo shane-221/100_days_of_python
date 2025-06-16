@@ -12,6 +12,7 @@ screen.tracer(0)  # Stops the automatic movement
 # Todo : Building of the snake body
 snake = Snake()
 
+
 # Todo: Getting the snake to move
 game_is_on=True
 while game_is_on:
