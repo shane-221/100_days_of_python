@@ -1,5 +1,9 @@
 from turtle import Turtle
 MOVE_DISTANCE= 20
+UP=90
+DOWN=270
+LEFT =180
+RIGHT =0
 
 class Snake:
 
@@ -7,6 +11,7 @@ class Snake:
 
         self.number_of_snakes = []      # This is a global variable relative to the instance.
         self.create_snake( )            # Automatically runs the method of create the snake when the Class is created.
+        self.head = self.number_of_snakes[0]
 
     def create_snake(self):
         x = 0
@@ -22,17 +27,20 @@ class Snake:
             x -= 20
             y -= 0
 
-            def up(self):
-                self.setheading(0)
+    def up(self):
+        if self.head.heading() != DOWN:         # iF STATEMENT CHECKS IF IT CAN GO BACK ON ITSELF. 
+            self.head.setheading(UP)
 
-            def down(self):
-                self.setheading(270)
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
-            def left(self):
-                self.setheading(180)
-
-            def right(self):
-                self.setheading(90)
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
 
 
     def move(self):
