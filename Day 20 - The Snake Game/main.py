@@ -12,6 +12,12 @@ screen.tracer(0)  # Stops the automatic movement
 # Todo : Building of the snake body
 snake = Snake()
 
+# Todo : Application of the Keystroke
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down,"Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 
 # Todo: Getting the snake to move
 game_is_on=True

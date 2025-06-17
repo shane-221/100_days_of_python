@@ -28,3 +28,4 @@ screen.onkey(clear, "c")
 
 # Todo: Exit only when clicked
 screen.exitonclick()
+    

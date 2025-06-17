@@ -1,10 +1,11 @@
 from turtle import Turtle
+MOVE_DISTANCE= 20
 
 class Snake:
 
     def __init__(self):
 
-        self.number_of_snakes = []
+        self.number_of_snakes = []      # This is a global variable relative to the instance.
         self.create_snake( )            # Automatically runs the method of create the snake when the Class is created.
 
     def create_snake(self):
@@ -21,6 +22,19 @@ class Snake:
             x -= 20
             y -= 0
 
+            def up(self):
+                self.setheading(0)
+
+            def down(self):
+                self.setheading(270)
+
+            def left(self):
+                self.setheading(180)
+
+            def right(self):
+                self.setheading(90)
+
+
     def move(self):
         for i in range(len(self.number_of_snakes)-1, 0, -1):
                 # these code basically move all the snakes other than the first to the earlier ones location
@@ -28,5 +42,5 @@ class Snake:
             new_y =self.number_of_snakes[i-1].ycor()
             self.number_of_snakes[i].goto(new_x, new_y)
                 # the first snakes location neds to be adjusted as well.
-        self.number_of_snakes[0].forward(20)
+        self.number_of_snakes[0].forward(MOVE_DISTANCE)
 
