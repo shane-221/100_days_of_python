@@ -1,6 +1,8 @@
 from turtle import Screen
 from snake import Snake
 import time
+from food import Food
+
 # Todo: Initial prep of the code environment
 screen= Screen()
 screen.setup(width=600, height = 600)
@@ -11,6 +13,7 @@ screen.tracer(0)  # Stops the automatic movement
 
 # Todo : Building of the snake body
 snake = Snake()
+food = Food()
 
 # Todo : Application of the Keystroke
 screen.listen()
@@ -26,7 +29,9 @@ while game_is_on:
     time.sleep(0.1)
 
     snake.move()
-
+    # Todo: Detect whether the food and the snake collide.
+    if snake.head.distance(food)< 15:
+        food.refresh()
 
 
 
