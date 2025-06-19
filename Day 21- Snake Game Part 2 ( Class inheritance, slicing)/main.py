@@ -3,6 +3,7 @@ from snake import Snake
 import time
 from food import Food
 from scoreboard import Scoreboard
+
 # Todo: Initial prep of the code environment
 screen= Screen()
 screen.setup(width=600, height = 600)
@@ -34,12 +35,22 @@ while game_is_on:
     # Todo: Detect whether the food and the snake collide.
     if snake.head.distance(food)< 15:
         food.refresh()
+        snake.extend()
         score.increase_score()
 
     # Todo: Detecting the corner of the game and end the game when the snake hits the wall.
     if snake.head.xcor()> 280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
         game_is_on= False
         score.game_over()
+    # Todo: Detect collision with its own tail.
+        # Done by checking if head collides with any aspect of the tail. Then trigger end of game sequence.
+        # Could also do it using the position of each of the modules in the list. But this would be a longer process.
+    for i in snake.number_of_snakes[1:]:
+        if  snake.head.distance(i)<10:
+            game_is_on = False
+            score.game_over()
+
+
 
 
 

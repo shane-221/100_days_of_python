@@ -18,14 +18,25 @@ class Snake:
         y = 0
 
         for i in range(0, 3):
-            snake = Turtle()
-            snake.color("white")
-            snake.shape("square")
-            snake.penup()
-            snake.goto(x, y)
-            self.number_of_snakes.append(snake)
+            self.add_extra_turtle(z=x, m=y)
             x -= 20
             y -= 0
+
+    def add_extra_turtle(self,z,m):
+        snake = Turtle()
+        snake.color("white")
+        snake.shape("square")
+        snake.penup()
+        snake.goto(z, m)
+        self.number_of_snakes.append(snake)
+
+
+    def extend(self):
+        position = self.number_of_snakes[-1].position()
+        x_position = position[0]
+        y_position = position [1]
+        self.add_extra_turtle(x_position, y_position)
+
 
     def up(self):
         if self.head.heading() != DOWN:         # iF STATEMENT CHECKS IF IT CAN GO BACK ON ITSELF. 
@@ -51,4 +62,5 @@ class Snake:
             self.number_of_snakes[i].goto(new_x, new_y)
                 # the first snakes location neds to be adjusted as well.
         self.number_of_snakes[0].forward(MOVE_DISTANCE)
+
 
