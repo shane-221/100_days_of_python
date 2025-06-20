@@ -10,20 +10,30 @@ screen.title("Pong")
 screen.tracer(0)
 
 
-# Todo: Creating the board from the Paddle class
-board= Paddle()
-board.create_board()
+# Todo: Creating two boards from the Paddle class
+R_PADDLE=(310,50)
+L_PADDLE=(-310,50)
+
+r_board= Paddle()
+r_board.create_board(side = R_PADDLE)
+l_board= Paddle()
+l_board.create_board(side=L_PADDLE)
 
 # Todo: Being able to move the paddle
+            # For right paddle
 screen.listen()
-screen.onkey(board.up, "Up")
-screen.onkey(board.down, "Down")
+screen.onkey(r_board.up, "Up")
+screen.onkey(r_board.down, "Down")
 
+            # For left Paddle
+screen.listen()
+screen.onkey(l_board.up, "w")
+screen.onkey(l_board.down, "s")
 
+# Todo : Need to update from the changes since the tracer is off.
 game_is_on = True
 while game_is_on:
 
-    # Todo : Need to update from the changes since the tracer is off.
     screen.update()
     time.sleep(0.02)
 
