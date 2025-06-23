@@ -1,13 +1,21 @@
-import turtle
+# TODO: Preparatory stuff
 from turtle import Screen,Turtle
 import time
 from paddle import Paddle
+from ball import Ball
+
+
 # Todo: Creation of the screen
 screen = Screen()
 screen.setup(width=800,height=600)
 screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
+
+# Todo: Creation of the Ball
+
+ball=  Ball()
+time.sleep(0.5)
 
 
 # Todo: Creating two boards from the Paddle class
@@ -35,7 +43,8 @@ game_is_on = True
 while game_is_on:
 
     screen.update()
-    time.sleep(0.02)
+    time.sleep(0.5)
+    ball.move()
 
 
 
@@ -43,19 +52,5 @@ while game_is_on:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Todo: Exit on click function
 screen.exitonclick()

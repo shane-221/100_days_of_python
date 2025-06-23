@@ -16,6 +16,7 @@ class Paddle:
             square.goto(side)
             self.board_list.append(square)
             x_cor = side[0]
+
             y_cor = side[1] - 20
             side = (x_cor, y_cor)
 
