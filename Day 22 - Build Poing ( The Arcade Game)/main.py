@@ -15,7 +15,7 @@ screen.tracer(0)
 # Todo: Creation of the Ball
 
 ball=  Ball()
-time.sleep(0.5)
+ball.direction()
 
 
 # Todo: Creating two boards from the Paddle class
@@ -40,6 +40,7 @@ screen.onkey(l_board.down, "s")
 
 # Todo : Need to update from the changes since the tracer is off.
 game_is_on = True
+ball.direction()
 while game_is_on:
 
     screen.update()
