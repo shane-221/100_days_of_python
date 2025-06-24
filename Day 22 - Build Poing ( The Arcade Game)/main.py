@@ -42,20 +42,27 @@ ball.direction()
 while game_is_on:
 
     screen.update()
-    time.sleep(0.5)
-    ball.move()
-    ball.detect_collision(
-                        paddle_list = r_board.board_list,
-                        main_length_angle=(135, 225),
-                        upper_width_angle=(120, 160),
-                        lower_width_angle=(200, 240)
-                        )
-    ball.detect_collision(
-                        paddle_list=l_board.board_list,
-                        main_length_angle=(315,405),
-                        upper_width_angle=(30,60),
-                        lower_width_angle=(300,330)
-                        )
+    time.sleep(0.2)
+    if -400<ball.xcor()<400:
+        ball.move()
+        ball.detect_collision(
+                            paddle_list = r_board.board_list,
+                            main_length_angle=(135, 225),
+                            upper_width_angle=(120, 160),
+                            lower_width_angle=(200, 240)
+                            )
+        ball.detect_collision(
+                            paddle_list=l_board.board_list,
+                            main_length_angle=(315,360),
+                            upper_width_angle=(30,60),
+                            lower_width_angle=(300,330)
+                            )
+    elif ball.xcor()>400 :
+        ball.reset_position(bounce_right=False)
+
+    elif ball.xcor()<-400:
+        ball.reset_position(bounce_right=True)
+
 
 
 

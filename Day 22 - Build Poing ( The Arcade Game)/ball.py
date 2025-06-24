@@ -1,7 +1,8 @@
 from  turtle import Turtle
 import random
+import time
 
-RIGHT_LIST=list(range(0,80))
+ANGLE =290
 
 class Ball(Turtle):
 
@@ -29,8 +30,7 @@ class Ball(Turtle):
 
                                     # Todo: setting of the initial direction. Need to pull a random angle though
     def direction(self):
-        angle =290
-        self.setheading(angle)
+        self.setheading(ANGLE)
 
 
                                     # Todo: Detect collisions relative to the side of the paddle
@@ -39,9 +39,9 @@ class Ball(Turtle):
         for item in paddle_list:
                     # Looping through each of the square from the paddle. Finding the leftmost coordinate. Then pushing
                     ## the ball back
-            left_side = (item.xcor()-10, item.ycor())
-            upper_side= (item.xcor(), item.ycor()+10)
-            lower_side =(item.xcor(), item.ycor()-10)
+            left_side = (item.xcor()-15, item.ycor())
+            upper_side= (item.xcor(), item.ycor()+15)
+            lower_side =(item.xcor(), item.ycor()-15)
                     # Left side of the paddle
             if self.distance(left_side)<10:
                 angle = random.randint(*main_length_angle)
@@ -61,6 +61,13 @@ class Ball(Turtle):
                 self.forward(30)
                 break
 
+    def reset_position(self,bounce_right):
+        time.sleep(0.2)
+        self.goto(0, 0)
+        if bounce_right:
+            self.setheading(random.randint(315,405))
+        else:
+            self.setheading(random.randint(135,225))
 
 
 
