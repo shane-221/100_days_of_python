@@ -1,5 +1,5 @@
 # TODO: Preparatory stuff
-from turtle import Screen,Turtle
+from turtle import Screen
 import time
 from paddle import Paddle
 from ball import Ball
@@ -15,8 +15,6 @@ screen.tracer(0)
 # Todo: Creation of the Ball
 
 ball=  Ball()
-ball.direction()
-
 
 # Todo: Creating two boards from the Paddle class
 R_PADDLE=(310,50)
@@ -46,6 +44,18 @@ while game_is_on:
     screen.update()
     time.sleep(0.5)
     ball.move()
+    ball.detect_collision(
+                        paddle_list = r_board.board_list,
+                        main_length_angle=(135, 225),
+                        upper_width_angle=(120, 160),
+                        lower_width_angle=(200, 240)
+                        )
+    ball.detect_collision(
+                        paddle_list=l_board.board_list,
+                        main_length_angle=(315,405),
+                        upper_width_angle=(30,60),
+                        lower_width_angle=(300,330)
+                        )
 
 
 
