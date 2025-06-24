@@ -42,7 +42,7 @@ ball.direction()
 while game_is_on:
 
     screen.update()
-    time.sleep(0.2)
+    time.sleep(0.1)
     if -400<ball.xcor()<400:
         ball.move()
         ball.detect_collision(
@@ -62,9 +62,6 @@ while game_is_on:
 
     elif ball.xcor()<-400:
         ball.reset_position(bounce_right=True)
-
-
-
 
 
 
