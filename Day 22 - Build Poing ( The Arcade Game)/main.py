@@ -3,6 +3,7 @@ from turtle import Screen
 import time
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 
 
 # Todo: Creation of the screen
@@ -15,6 +16,9 @@ screen.tracer(0)
 # Todo: Creation of the Ball
 
 ball=  Ball()
+
+# Todo: Creation of the scoreboard
+scoreboard= Scoreboard()
 
 # Todo: Creating two boards from the Paddle class
 R_PADDLE=(310,50)
@@ -42,7 +46,7 @@ ball.direction()
 while game_is_on:
 
     screen.update()
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     if -400<ball.xcor()<400:
         ball.move()
         ball.detect_collision(
@@ -59,9 +63,11 @@ while game_is_on:
                             )
     elif ball.xcor()>400 :
         ball.reset_position(bounce_right=False)
+        scoreboard.l_point()
 
     elif ball.xcor()<-400:
         ball.reset_position(bounce_right=True)
+        scoreboard.r_point()
 
 
 

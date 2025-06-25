@@ -4,6 +4,7 @@ import time
 
 ANGLE =290
 
+
 class Ball(Turtle):
 
     def __init__(self):                 # Todo: Changes everything into turtle class
@@ -12,6 +13,7 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
+        self.move_speed =0.1
                                     # Todo: Turtle to move while accounting for the vertical boundaries
     def move(self):
         if self.ycor() >= 280:          # sTART WITH THE SPECIFIC CASES THEN MOVE DOEN TO THE GENERAL ONES
@@ -36,6 +38,7 @@ class Ball(Turtle):
                                     # Todo: Detect collisions relative to the side of the paddle
                                     ## Need to define the angles of rebound separately. Relative to where the paddle is
     def detect_collision(self, paddle_list, main_length_angle, upper_width_angle, lower_width_angle):
+        self.move_speed *= 0.9
         for item in paddle_list:
                     # Looping through each of the square from the paddle. Finding the leftmost coordinate. Then pushing
                     ## the ball back
@@ -63,6 +66,7 @@ class Ball(Turtle):
 
     def reset_position(self,bounce_right):
         time.sleep(0.2)
+        self.move_speed = 0.1
         self.goto(0, 0)
         if bounce_right:
             self.setheading(random.randint(315,405))
