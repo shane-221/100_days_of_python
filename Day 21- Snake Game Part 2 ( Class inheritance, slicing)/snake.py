@@ -28,7 +28,7 @@ class Snake:
         snake.shape("square")
         snake.penup()
         snake.goto(z, m)
-        self.number_of_snakes.append(snake)
+        self.number_of_snakes.append(snak)
 
 
     def extend(self):

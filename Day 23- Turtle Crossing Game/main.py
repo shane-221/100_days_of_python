@@ -20,16 +20,18 @@ screen.onkey(player.left, "Left")
 
 # Todo: Movement of the obstacles.
 cars= Cars()
-
-
+cars.car_manager()
+cars.loop_the_cars()
 
 # Todo: Screen update function
 game_on= True
+
 while game_on:
     time.sleep(0.1)
     screen.update()
 
     cars.move_one_car()
+
 
 
 # Todo: Exit on click function
