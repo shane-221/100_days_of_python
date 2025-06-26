@@ -38,7 +38,7 @@ class Cars(Turtle):
             i[1].color(random_colour)
 
 
-        # Todo: moving each within the one car list  by 5 units forward
+        # Todo: moving each of the turtles within the list  by 5 units forward
     def move_one_car(self):
         for i in self.all_car:
             self.penup()
@@ -51,7 +51,7 @@ class Cars(Turtle):
     def car_manager(self):
         for i in range(0, 30):
             any_random_y = random.randint(-260, 280)
-            any_random_x = random.randint(320, 600)
+            any_random_x = random.randint(320, 1000)
             self.create_one_car(any_random_x,any_random_y)
 
         # Todo: Looping the cars so it appears again at a random place
@@ -60,12 +60,10 @@ class Cars(Turtle):
             # Todo: need to recycle the old car to a random location
             if i[1].xcor()<-400:
                 any_random_y = random.randint(-260, 280)
-                any_random_x = random.randint(320, 2000)
+                any_random_x = random.randint(320, 1000)
                 i[0].goto(any_random_x, any_random_y)
 
-                any_random_z = random.randint(-260, 280)
-                any_random_w = random.randint(320, 2000)
-                i[1].goto(any_random_z, any_random_w)
+                i[1].goto(any_random_x + 20, any_random_y)
 
 
 

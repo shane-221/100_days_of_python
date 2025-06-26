@@ -8,6 +8,7 @@ from car_manager import Cars
 screen = Screen()
 screen.setup(width=600,height=600)
 screen.tracer(0)
+screen.title("Turtle Crossing")
 
 # Todo: Addition of the Plater Turtle
 player= Player_Turtle()
@@ -21,7 +22,7 @@ screen.onkey(player.left, "Left")
 # Todo: Movement of the obstacles.
 cars= Cars()
 cars.car_manager()
-cars.loop_the_cars()
+
 
 # Todo: Screen update function
 game_on= True
@@ -31,6 +32,7 @@ while game_on:
     screen.update()
 
     cars.move_one_car()
+    cars.loop_the_cars()
 
 
 
