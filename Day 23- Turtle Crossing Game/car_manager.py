@@ -49,21 +49,25 @@ class Cars(Turtle):
 
         # Todo: Creating multiple squares that do the same functionality with a time lag
     def car_manager(self):
-        for i in range(0, 50):
+        for i in range(0, 30):
             any_random_y = random.randint(-260, 280)
-            any_random_x = random.randint(320, 2000)
+            any_random_x = random.randint(320, 600)
             self.create_one_car(any_random_x,any_random_y)
 
         # Todo: Looping the cars so it appears again at a random place
     def loop_the_cars(self):
         for i in self.all_car:
-            # Todo: need to remove the old car
+            # Todo: need to recycle the old car to a random location
             if i[1].xcor()<-400:
-                i.hideturtle()
-            # Todo: Need to add in a random car at the start location
                 any_random_y = random.randint(-260, 280)
                 any_random_x = random.randint(320, 2000)
-                self.create_one_car(any_random_x, any_random_y)
+                i[0].goto(any_random_x, any_random_y)
+
+                any_random_z = random.randint(-260, 280)
+                any_random_w = random.randint(320, 2000)
+                i[1].goto(any_random_z, any_random_w)
+
+
 
 
 
