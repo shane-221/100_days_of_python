@@ -32,27 +32,24 @@ cars.car_manager()
 game_on= True
 
 while game_on:
-    # Todo: what happens when turtle is below 280
-    if player.ycor()<280:
-        time.sleep(0.1)
-        screen.update()
+    time.sleep(0.1)
+    screen.update()
 
-        cars.move_one_car()
-        cars.loop_the_cars()
-        # Todo: What happens when the Turtle touches the cars--> exit loop
+    cars.move_one_car()
+    cars.loop_the_cars()
+    # Todo: What happens when the Turtle touches the cars--> exit loop
 
-        for i in cars.all_car:
-            for x in i:
-                if player.distance(x)<20:
-                    game_on=False
+    for i in cars.all_car:
+        for x in i:
+            if player.distance(x)<20:
+                game_on=False
     # Todo: what happens if the turtle clears the game.
-    if player.ycor()>280:
+    if player.ycor()>=280:
+        player.start_position()
+        cars.speed_up()
         scoreboard.increase_score()
-        time.sleep(0.1)
-        screen.update()
 
-        cars.move_one_car()
-        cars.loop_the_cars()
+
 
 
 

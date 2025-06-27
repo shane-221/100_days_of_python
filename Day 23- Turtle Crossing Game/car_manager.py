@@ -14,6 +14,7 @@ class Cars(Turtle):
         self.penup()
         self.one_car = []
         self.all_car = []
+        self.level = 2
 
 
 
@@ -44,7 +45,7 @@ class Cars(Turtle):
             for part in i:
                 x_cor =part.xcor()
                 y_cor =part.ycor()
-                part.goto(x_cor-5, y_cor)
+                part.goto(x_cor-self.level, y_cor)
 
         # Todo: Creating multiple squares that do the same functionality with a time lag
     def car_manager(self):
@@ -63,6 +64,9 @@ class Cars(Turtle):
                 i[0].goto(any_random_x, any_random_y)
 
                 i[1].goto(any_random_x + 20, any_random_y)
+    def speed_up(self):
+        self.level+=1
+
 
 
 
