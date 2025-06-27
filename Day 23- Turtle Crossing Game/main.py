@@ -43,6 +43,7 @@ while game_on:
         for x in i:
             if player.distance(x)<20:
                 game_on=False
+                scoreboard.game_over()
     # Todo: what happens if the turtle clears the game.
     if player.ycor()>=280:
         player.start_position()

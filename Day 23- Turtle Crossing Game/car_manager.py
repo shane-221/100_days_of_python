@@ -14,7 +14,7 @@ class Cars(Turtle):
         self.penup()
         self.one_car = []
         self.all_car = []
-        self.level = 2
+        self.level = 3          # Not placed any limits on the speed of the game. But can do it if I want to. 
 
 
 
@@ -32,10 +32,10 @@ class Cars(Turtle):
             y_cor =i.ycor()
         self.hideturtle()
         self.all_car.append(one_car)
-        for i in self.all_car:
-            random_colour= random.choice(COLORS)
-            i[0].color(random_colour)
-            i[1].color(random_colour)
+
+        random_colour= random.choice(COLORS)
+        one_car[0].color(random_colour)
+        one_car[1].color(random_colour)
 
 
         # Todo: moving each of the turtles within the list  by 5 units forward
