@@ -1,7 +1,6 @@
 from turtle import Turtle
 import random
-import time
-from webbrowser import open_new
+
 
 # Todo: Constants
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]

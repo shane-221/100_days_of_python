@@ -33,6 +33,14 @@ while game_on:
 
     cars.move_one_car()
     cars.loop_the_cars()
+    # Todo: What happens when the Turtle touches the cars--> exit loop
+
+    for i in cars.all_car:
+        for x in i:
+            if player.distance(x)<20:
+                game_on=False
+
+
 
 
 
