@@ -49,7 +49,7 @@ class Cars(Turtle):
         # Todo: Creating multiple squares that do the same functionality with a time lag
     def car_manager(self):
         for i in range(0, 30):
-            any_random_y = random.randint(-260, 280)
+            any_random_y = random.randint(-260, 260)
             any_random_x = random.randint(320, 1000)
             self.create_one_car(any_random_x,any_random_y)
 
