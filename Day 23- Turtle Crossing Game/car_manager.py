@@ -14,7 +14,7 @@ class Cars(Turtle):
         self.penup()
         self.one_car = []
         self.all_car = []
-        self.level = 3          # Not placed any limits on the speed of the game. But can do it if I want to. 
+        self.level = 3          # Not placed any limits on the speed of the game. But can do it if I want to.
 
 
 

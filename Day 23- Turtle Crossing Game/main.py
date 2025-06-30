@@ -51,10 +51,5 @@ while game_on:
         scoreboard.increase_score()
 
 
-
-
-
-
-
 # Todo: Exit on click function
 screen.exitonclick()
