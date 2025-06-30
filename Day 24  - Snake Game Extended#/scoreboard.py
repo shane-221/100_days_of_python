@@ -37,7 +37,7 @@ class Scoreboard( Turtle):
     def reset(self ):
         if self.score > self.high_score:
             self.high_score = self.score
-        # Saving the high score within the text file. 
+        # Saving the high score within the text file.
         with open("data.txt", mode = "w") as file:
             file.write(str(self.high_score))
         self.score = 0              # Ordering of the code matters
