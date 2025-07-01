@@ -1,4 +1,3 @@
-
 #TODO: Create a letter using starting_letter.txt
 
 with open("Input/Names/invited_names.txt", mode="r") as file:

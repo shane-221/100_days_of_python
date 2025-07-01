@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004a3623-1a13-4739-b59b-8a0e3b4537ec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input/Letters/starting_letter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Output/ReadyToSend/starting_letter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output/ReadyToSend/example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Input/Letters/example.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="004a3623-1a13-4739-b59b-8a0e3b4537ec" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +31,12 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/mathe/OneDrive/Desktop/100_days_of_python/Day 24- Mail merge Task&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mathe\OneDrive\Desktop\100_days_of_python\Day 24- Mail merge Task\Output\ReadyToSend" />
+      <recent name="C:\Users\mathe\OneDrive\Desktop\100_days_of_python\Day 24- Mail merge Task\Input\Letters" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
