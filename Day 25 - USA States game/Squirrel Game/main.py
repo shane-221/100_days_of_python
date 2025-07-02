@@ -17,13 +17,12 @@ number_black = len(black)
     # Todo: converting the colours into a dictionary and building them into a dataframe.
             #  Todo: creating the dictionary to be used.
 Fur_colour_data ={
-    "Gray": number_grey,
-    "Cinnamon": number_cinnamon,
-    "Black": number_black
+    "Fur Colour":["Gray", "Cinnamon", "Black"],
+    "Number":[number_grey, number_cinnamon, number_black]
                  }
             # Todo: adjusting the dataset for dataframe
 
-data = pd.Series(Fur_colour_data)
+data = pd.DataFrame(data = Fur_colour_data)
 print( data)
 
     # Todo: converting the file into a csv file.
