@@ -1,4 +1,6 @@
 import turtle
+
+import pandas
 import pandas as pd
 FONT = ("Arial",16, "normal")
 
@@ -43,7 +45,7 @@ while game_loop:
             # Todo: Title should also keep track of the number of correct answers
     answer_state = screen.textinput(title=f"Guess the state. Score ={score}/ 50",
                                     prompt="What is the states name? Or press N to exit"
-                                    )
+                                    ).title()
 
     if answer_state in states:
         t= turtle.Turtle()
@@ -75,7 +77,10 @@ while game_loop:
 # Todo: Exit on click function
 screen.exitonclick()
 
-
+# Todo: Once exited need to get a list of items where they can learn
+    #Todo: Convert the data into a dictionary:
+datalist =  pandas.DataFrame(states)
+datalist.to_csv("Learn_states.csv")
 
 
 
