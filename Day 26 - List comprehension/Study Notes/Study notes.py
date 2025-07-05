@@ -22,3 +22,6 @@ short_names = [name for name in names if len(name)<5]
 print(short_names)
 
 # Todo: changing somethign with list comprehension.
+names_list = [ "Aiden", "Bella", "Cameron", "Dylan", "Evelyn","Finn", "Grace",  "Harper","Isaac"]
+new_names =[names.upper() for names in names_list if len(names)>6 ]
+print(f"new_names:{new_names}")
