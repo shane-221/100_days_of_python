@@ -13,15 +13,13 @@ with open("file2.txt.") as file2:
     for i in content:
         i = int(i)
         list_numbers.append(i)
+print(list_numbers)
 # Todo: removing common numbers
-exclude_list =[]
-master_list =[]
-other_list = [  n
-                for n in list_numbers
-                
-                ]
-print(exclude_list)
-print(master_list)
-# result =
+# exclude_list =[]
+# other_list =[n
+#             for n in list_numbers
+#             if n not in other_lis
+#                 ]
+# # result =
 
 # print(result)
