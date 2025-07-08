@@ -16,16 +16,16 @@ dataset = pd.DataFrame(student_scores)
 print( dataset)
     # Todo: access the data like you would in a dictionary
 for (key, value) in dataset.items():
-    #print(value)
+    print(value)
     pass
 
-    # Todo: this is not that useful given that it iterates over the column. Thus panda produces this function :
-for (index, row) in dataset.iterrows():
-    #print(  row)
-        # This will print everything by rows through each of the index.
-        # Todo: you could access a certain specific row through the dot notation
-    print( row.Students)
-            # This will print out all the students
+#     # Todo: this is not that useful given that it iterates over the column. Thus panda produces this function :
+# for (index, row) in dataset.iterrows():
+#     #print(  row)
+#         # This will print everything by rows through each of the index.
+#         # Todo: you could access a certain specific row through the dot notation
+#     print( row.Students)
+#             # This will print out all the students
 
 
 
