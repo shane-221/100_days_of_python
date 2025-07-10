@@ -28,6 +28,9 @@ def button_click():
         # When the button gets clicked the text gets replaced with whats on the entry box
     my_label["text"]=input.get()
 
+
+
+
 # Todo: Entry or Text Boxes
 input  = Entry(width=50)
 input.pack()
