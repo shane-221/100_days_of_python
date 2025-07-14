@@ -38,12 +38,6 @@ input.pack()
 
 
 
-
-
-
-
-
-
 # Todo: Getting the button to exit and work
 button= Button(text = "Click me ", command = button_click)
 button.pack()

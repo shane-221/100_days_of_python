@@ -1,5 +1,6 @@
 from tkinter import *
-# ---------------------------- CONSTANTS ------------------------------- #
+import math
+# ----------------------------------------------- CONSTANTS ---------------------------------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
@@ -10,7 +11,7 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# -------------------------------------------------------- UI SETUP -------------------------------------------------- #
 
 # Todo: Building of the screen
 window =Tk()
@@ -23,7 +24,7 @@ canvas.config(bg= YELLOW)
 tomato_img = PhotoImage(file="tomato.png")          # Image will not learn the tomato file. Hence, need to
                                                     ## read through the file and get access to the location.
 canvas.create_image(100, 112, image =tomato_img)
-canvas.create_text(100, 130, text ="00:00", fill= "white", font = (FONT_NAME, 35, "bold"))
+timer_text = canvas.create_text(100, 130, text ="00:00", fill= "white", font = (FONT_NAME, 35, "bold"))
 canvas.grid(row=1, column = 1)
                                         # Need to create padding on each side of the picture to make it look cleaner
 
@@ -31,13 +32,17 @@ canvas.grid(row=1, column = 1)
 total_label = Label(text="Study Timer", font =( " Arial", 30, "normal"), fg= GREEN, bg= YELLOW)
 total_label.grid(column= 1, row =  0)
 
-# ---------------------------- TIMER RESET ------------------------------- #
+# Todo: starting the timer to call the function
+def start_timer():                                                                    #(2)#
+    count_down(5)
+
+# -------------------------------------------- TIMER RESET ---------------------------------------------------------- #
 timer_reset = Button(text ="Reset",  highlightthickness= 0)
 timer_reset.grid(row = 2, column =3)
 
-# ---------------------------- TIMER MECHANISM ------------------------------- #
+# ---------------------------------------------- TIMER MECHANISM ---------------------------------------------------- #
 # Todo: Timer Button
-timer_start = Button(text= "Start", highlightthickness= 0)
+timer_start = Button(text= "Start", highlightthickness= 0, command= start_timer)     #(1)#
 timer_start.grid(row = 2, column = 0)
 
 # Todo: Timer tick mark
@@ -47,8 +52,15 @@ check_marks  = Label(text="✓", font =( " Arial", 20, "normal"), fg= GREEN, bg=
 check_marks.grid(column= 1, row =  3)
 
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
-
-
+# --------------------------------------=------- COUNTDOWN MECHANISM ------------------------------------------------- #
+# Todo: Start button gets clicked--> count donw function gets applied encased with the number of sections
+#  ------>leads to the count down function. This is where the number is converted into minutes and seconds
+#  where two things happen: 1) seconds keep reuducing 2) WSeconds gets converted into minutes and seconds and displayed. 
+def count_down(seconds):                                                            #(3)#
+    count_min = math.floor()(seconds/60)
+    count_seconds= seconds% 60
+    if seconds>0:
+       window.after(1000, count_down, seconds-1)
+    canvas.itemconfig(timer_text, text=f"{count_min}:{count_seconds}")
 
 window.mainloop()
