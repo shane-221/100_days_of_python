@@ -6,10 +6,10 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
+WORK_MIN = 1
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
-
+reps = 1
 
 # -------------------------------------------------------- UI SETUP -------------------------------------------------- #
 
@@ -32,9 +32,27 @@ canvas.grid(row=1, column = 1)
 total_label = Label(text="Study Timer", font =( " Arial", 30, "normal"), fg= GREEN, bg= YELLOW)
 total_label.grid(column= 1, row =  0)
 
-# Todo: starting the timer to call the function
+# Todo: starting the timer to call the function and adjusting for the specific times.
 def start_timer():                                                                    #(2)#
-    count_down(5)
+    global reps
+    if reps == 1 or reps==3 or reps ==5 or reps ==7:
+        count_down(WORK_MIN*60)
+        study_label1 = Label(text="Study! ", font=(" Arial", 20, "normal"), fg=GREEN, bg=YELLOW)
+        study_label1.grid(column=1, row=4)
+        # Todo: Adding a tick mark for every session completed
+        reps+=1
+    elif reps==2 or reps ==4 or reps==6:
+        count_down(SHORT_BREAK_MIN*60)
+        break_label1 = Label(text="Break", font=(" Arial", 20, "normal"), fg=PINK, bg=YELLOW)
+        break_label1.grid(column=1, row=4)
+        reps+=1
+    elif reps==8:
+        count_down(LONG_BREAK_MIN*60)
+        break_label2 = Label(text="""
+                            Well Done! You've finished the Session""",
+                            font=(" Arial", 20, "normal"), fg=RED, bg=YELLOW)
+        break_label2.grid(column=1, row=4)
+
 
 # -------------------------------------------- TIMER RESET ---------------------------------------------------------- #
 timer_reset = Button(text ="Reset",  highlightthickness= 0)
@@ -45,22 +63,29 @@ timer_reset.grid(row = 2, column =3)
 timer_start = Button(text= "Start", highlightthickness= 0, command= start_timer)     #(1)#
 timer_start.grid(row = 2, column = 0)
 
-# Todo: Timer tick mark
-#Text
-check_marks = Text(height=5, width=30)
+# Todo: Creating the timer tick mark
 check_marks  = Label(text="✓", font =( " Arial", 20, "normal"), fg= GREEN, bg= YELLOW)
 check_marks.grid(column= 1, row =  3)
-
 
 # --------------------------------------=------- COUNTDOWN MECHANISM ------------------------------------------------- #
 # Todo: Start button gets clicked--> count donw function gets applied encased with the number of sections
 #  ------>leads to the count down function. This is where the number is converted into minutes and seconds
-#  where two things happen: 1) seconds keep reuducing 2) WSeconds gets converted into minutes and seconds and displayed. 
+#  where two things happen: 1) seconds keep reuducing 2) WSeconds gets converted into minutes and seconds and displayed.
 def count_down(seconds):                                                            #(3)#
-    count_min = math.floor()(seconds/60)
+    count_min = math.floor(seconds/60)
     count_seconds= seconds% 60
-    if seconds>0:
-       window.after(1000, count_down, seconds-1)
-    canvas.itemconfig(timer_text, text=f"{count_min}:{count_seconds}")
 
+    if count_seconds<10:
+        count_seconds =f"0{count_seconds}"
+
+    if seconds>0:
+        window.after(1000, count_down, seconds-1)
+        canvas.itemconfig(timer_text, text=f"{count_min}:{count_seconds}")
+    else:
+        start_timer()
+        canvas.itemconfig(timer_text, text=f"{count_min}:{count_seconds}")
+
+
+
+#-----------------------------------------------KEEP THE SCREEN OPEN--------------------------------------------------#
 window.mainloop()
