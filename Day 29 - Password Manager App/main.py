@@ -12,33 +12,33 @@ window.title("Password Manager")
 window.config(padx=20,pady=20)
 
 # Todo: Canvas with the image
-canvas = Canvas( width = 300,height= 300, highlightthickness= 0)
+canvas = Canvas( width = 200,height= 200, highlightthickness= 0)
 logo_ing =PhotoImage(file = "logo.png")
-canvas.create_image(150, 100, image= logo_ing )
+canvas.create_image(100, 100, image= logo_ing )
 canvas.grid(row= 0,column =1)
 
         #####################-----Button Sections-----###########################
 # Todo: Add button
-add_button = Button(text= "Add ", command  = None, )
-add_button.grid(row=4, column= 1)
+add_button = Button(text= "Add ", command  = None, width = 36)
+add_button.grid(row=4, column= 1, columnspan= 2, sticky= "ew")
 
 # Todo: Generate Password Button
-password_button= Button(text =" Generate Password" , command  = None, width=20)
+password_button= Button(text =" Generate Password" , command  = None, width=15, padx= 30)
 password_button.grid(row= 3, column= 2)
 
 
         #####################-----Entry Section-----##############################
 # Todo: Password write section
-password_input = Entry( width =25 )
-password_input. grid(row= 3, column = 1)
+password_input = Entry( width = 36)
+password_input. grid(row= 3, column = 1, sticky= "ew")
 
 # Todo: Email section
-email_input = Entry( width =25 )
-email_input. grid(row= 2, column = 1)
+email_input = Entry( width =36)
+email_input. grid(row= 2, column = 1, columnspan = 2, sticky="ew")
 
 # Todo: Website section
-website_input = Entry( width =25 )
-website_input. grid(row= 1, column = 1)
+website_input = Entry( width =36 )
+website_input. grid(row= 1, column = 1, columnspan= 2, sticky= "ew")
 
 
 
