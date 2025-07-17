@@ -25,19 +25,28 @@ canvas.grid(row= 0,column =1)
 # Todo: Saving the data. Creating an embedded list, then convert to data frame, then to a text file
 
         # Todo: Creating an embedded list
-data_list =[]
+
 def save():
+        # Get all the values
     website_value = website_input.get()
     email_value = email_input.get()
     password_value = password_input.get()
+
+        # Put the items into a list
     item_list =[website_value, email_value, password_value]
-    data_list.append(item_list)
-    dataset = pd.DataFrame(item_list)
-    dataset.to_csv("Password record.csv", mode ="a")
+
+        # Create that singular list into a data frame
+    dataset = pd.DataFrame([item_list], columns =["Website", "Email", "Password"])
+
+        # This data frame is added into a primary data frame thats a csv with the headings.
+    dataset.to_csv("Password record.csv",
+                   mode ="a",
+                   header = False,
+                   index = False)
 
             # Todo: convert that list into a data frame
 def print_results():
-
+    pass
 
 #--------------------------------UI Interface -------------------------------------------------------------------------#
 
