@@ -38,7 +38,7 @@ def save():
         files.write(f"{dataset}")
 
 
-            # Todo: convert that list into a data frame
+            # Todo: convert that list into a txt file and using it
 def print_results():
     # Todo: Creating the new Window
     window2= Tk()
@@ -71,7 +71,7 @@ add_button.grid(row=4, column= 1, columnspan= 2, sticky= "ew")
 password_button= Button(text =" Generate Password" , command  = print_results, width=15, padx= 30)
 password_button.grid(row= 3, column= 2)
 
-# Todo: Add button
+# Todo: List of results function
 add_button = Button(text= "List of Results", command  = print_results,  width = 36)
 add_button.grid(row=5, column= 1, columnspan= 3, sticky= "ew")
 

@@ -27,26 +27,39 @@ canvas.grid(row= 0,column =1)
         # Todo: Creating an embedded list
 
 def save():
-        # Get all the values
+        #  Todo: Get all the values
     website_value = website_input.get()
     email_value = email_input.get()
     password_value = password_input.get()
 
-        # Put the items into a list
+        #  Todo: Put the items into a list
     item_list =[website_value, email_value, password_value]
 
-        # Create that singular list into a data frame
+        #  Todo: Create that singular list into a data frame
     dataset = pd.DataFrame([item_list], columns =["Website", "Email", "Password"])
 
-        # This data frame is added into a primary data frame thats a csv with the headings.
+        # Todo: This data frame is added into a primary data frame thats a csv with the headings.
     dataset.to_csv("Password record.csv",
                    mode ="a",
                    header = False,
                    index = False)
 
-            # Todo: convert that list into a data frame
+            #
 def print_results():
-    pass
+    data =pd.read_csv("Password record.csv")
+
+    # Todo: Creating the new Window
+    window2= Tk()
+    window2.title("Password List", )
+    window2.config(padx=20, pady=20, bg= "black")
+
+    # Todo: Pulling the text from the function.
+
+
+    password_content  = Text(window2,  font=FONT, fg="white", bg="black")
+    password_content.focus()
+    password_content.insert("1.0", data)
+    password_content.grid(row=0, column= 0)
 
 #--------------------------------UI Interface -------------------------------------------------------------------------#
 
@@ -58,6 +71,10 @@ add_button.grid(row=4, column= 1, columnspan= 2, sticky= "ew")
 # Todo: Generate Password Button
 password_button= Button(text =" Generate Password" , command  = print_results, width=15, padx= 30)
 password_button.grid(row= 3, column= 2)
+
+# Todo: List of results function
+add_button = Button(text= "List of Results", command  = print_results,  width = 36)
+add_button.grid(row=5, column= 1, columnspan= 3, sticky= "ew")
 
 
         #####################-----Entry Section-----##############################
