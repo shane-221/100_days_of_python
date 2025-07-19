@@ -1,5 +1,5 @@
 from tkinter import *
-
+from tkinter import messagebox
 
 #---------------------------------------------Constants----------------------------------------------------------------#
 FONT = ( " Arial", 12, "bold")
@@ -28,14 +28,31 @@ canvas.grid(row= 0,column =1)
 
 def save():
 
-        # Get all the values
+        # tODO: Get all the values
     website_value = website_input.get()
     email_value = email_input.get()
     password_value = password_input.get()
+        # Todo: making sure that the values are correct:
 
-    dataset = f"{website_value} -{email_value} - {password_value}\n"
-    with open("Password record.txt", mode ="a") as files:
-        files.write(f"{dataset}")
+    if len(website_value) != 0 and len(email_value) != 0 and len(password_value) != 0:
+        is_ok = messagebox.askokcancel(title=website_value,
+                                       message=f"""
+                               These are the details entered:
+                                Email:{email_value}
+                                Password : {password_value}
+                                Is it okay to save?     
+                                    """)
+        if is_ok:
+            dataset = f"{website_value} -{email_value} - {password_value}\n"
+            with open("Password record.txt", mode ="a") as files:
+                files.write(f"{dataset}")
+
+            # Todo: deleting the values once you click add.
+            website_input.delete(0, END)
+            password_input.delete(0, END)
+            email_input.delete(0, END)
+    else:
+        messagebox.showinfo(title="Oops", message=" Please dont leve the fields empty!")
 
 
             # Todo: convert that list into a txt file and using it
@@ -64,16 +81,13 @@ def print_results():
 
         #####################-----Button Sections-----###########################
 # Todo: Add button
-add_button = Button(text= "Add ", command  = save, width = 36)
+add_button = Button(text= "Generate list of Passwords ", command  = print_results, width = 36)
 add_button.grid(row=4, column= 1, columnspan= 2, sticky= "ew")
 
 # Todo: Generate Password Button
-password_button= Button(text =" Generate Password" , command  = print_results, width=15, padx= 30)
+password_button= Button(text =" Add" , command  = save, width=15, padx= 30)
 password_button.grid(row= 3, column= 2)
 
-# Todo: List of results function
-add_button = Button(text= "List of Results", command  = print_results,  width = 36)
-add_button.grid(row=5, column= 1, columnspan= 3, sticky= "ew")
 
 
         #####################-----Entry Section-----##############################
@@ -89,7 +103,7 @@ email_input. grid(row= 2, column = 1, columnspan = 2, sticky="ew")
 website_input = Entry( width =36 )
 website_input. grid(row= 1, column = 1, columnspan= 2, sticky= "ew")
 website_input.focus
-website_input.insert(0, "Enter email")
+
 
 
 
