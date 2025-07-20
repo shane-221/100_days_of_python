@@ -18,4 +18,8 @@ else:
     content  = file.read()
 
 finally:
-    file.close()                                    # Run it no matter what 
+    file.close()                                    # Run it no matter what
+
+
+    raise KeyError
+
