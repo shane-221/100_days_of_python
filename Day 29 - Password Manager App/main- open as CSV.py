@@ -74,8 +74,6 @@ def print_results():
     window2.config(padx=20, pady=20, bg= "black")
 
     # Todo: Pulling the text from the function.
-
-
     password_content  = Text(window2,  font=FONT, fg="white", bg="black")
     password_content.focus()
     password_content.insert("1.0", data)
