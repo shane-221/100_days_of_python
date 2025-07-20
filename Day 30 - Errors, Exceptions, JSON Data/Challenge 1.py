@@ -1,3 +1,4 @@
+#------------------------------------------Objective ------------------------------------------------------------------#
 # IndexError Handling
 # We've got some buggy code. Try running the code. The code will crash and give you an IndexError.
 # This is because we're looking through the list of fruits for an index that is out of range.
@@ -8,7 +9,8 @@
 #
 # ImPORTANT: The exception handling should NOT allow each fruit to be printed when there is an exception. e.g. it should
 # not print out Apple pie, Pear pie and Orange pie, when there is an exception it should only print "Fruit pie".
-#
+
+#------------------------------------------Solution--------------------------------------------------------------------#
 fruits = ["Apple", "Pear", "Orange"]
 
 
