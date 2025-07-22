@@ -41,19 +41,19 @@ def save():
 
     if len(website_value) != 0 and len(email_value) != 0 and len(password_value) != 0:
         try:
-            with open("main-open as text.py", "r") as files:
+            with open("Password record.json", "r") as files:
                 data = json.load(files)
 
         except FileNotFoundError:
             with open("Password record.json", mode="w") as new_files:
                 # Saving the updated data:
-                json.dump(new_data , files, indent=3)
+                json.dump(new_data , new_files, indent=3)
 
         else:
             # Updating the data:
             data.update(new_data)
 
-            with open("Password record.json", mode ="r") as files:
+            with open("Password record.json", mode ="w") as files:
                 # Saving the updated data:
                 json.dump(data, files, indent=3)
         finally:
@@ -84,7 +84,29 @@ def print_results():
         password_content.insert("1.0", content)
         password_content.grid(row=0, column= 0)
 
+def search():
+    # Todo:: Getting the Key value
+    key = website_input.get()
 
+    # Todo: Pull the JSON File as a dictionary
+    with open("Password record.json", "r") as complete_data:
+        data = json.load(complete_data)
+        # Todo: check and present the data.
+        try:
+            if key in data:
+                messagebox.showinfo(title="Your Details",
+                            message=f"""
+                                    Email:{data[key]["Email"]}
+                                    Password:{data[key]["Password"]}
+                                    """)
+            else:
+                messagebox.showinfo(title="Your Details",
+                            message="No data!"
+                                    )
+        except (KeyError , FileNotFoundError):
+            messagebox.showinfo(title="Your Details",
+                                message="No data!"
+                                )
 
 
 #--------------------------------UI Interface -------------------------------------------------------------------------#
@@ -97,6 +119,10 @@ add_button.grid(row=4, column= 1, columnspan= 2, sticky= "ew")
 # Todo: Generate Password Button
 password_button= Button(text =" Add" , command  = save, width=15, padx= 30)
 password_button.grid(row= 3, column= 2)
+
+# Todo: Search Button
+search_button= Button(text =" Search" , command  = search , width=15, padx= 30)
+search_button.grid(row= 1, column= 2)
 
 
 
@@ -111,7 +137,7 @@ email_input. grid(row= 2, column = 1, columnspan = 2, sticky="ew")
 
 # Todo: Website section
 website_input = Entry( width =36 )
-website_input. grid(row= 1, column = 1, columnspan= 2, sticky= "ew")
+website_input. grid(row= 1, column = 1,  sticky= "ew")
 website_input.focus
 
 
