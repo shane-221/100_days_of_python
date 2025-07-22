@@ -17,7 +17,7 @@ window1.config(padx=20,pady=20)
 
 # Todo: Canvas with the image
 canvas = Canvas( width = 200,height= 200, highlightthickness= 0)
-logo_ing =PhotoImage(file ="../logo.png")
+logo_ing =PhotoImage(file ="logo.png")
 canvas.create_image(100, 100, image= logo_ing )
 canvas.grid(row= 0,column =1)
 
@@ -40,19 +40,27 @@ def save():
         # Todo: making sure that the values are correct:
 
     if len(website_value) != 0 and len(email_value) != 0 and len(password_value) != 0:
-        with open("Password record.json", mode ="r") as files:
-            # Reloading the old data:
-            data = json.load(files)
+        try:
+            with open("main-open as text.py", "r") as files:
+                data = json.load(files)
+
+        except FileNotFoundError:
+            with open("Password record.json", mode="w") as new_files:
+                # Saving the updated data:
+                json.dump(new_data , files, indent=3)
+
+        else:
             # Updating the data:
             data.update(new_data)
-            with open("Password record.json", mode="w") as new_files:
-            # Saving the updated data:
-            json.dump(data, new_files, indent = 3)
 
-        # Todo: deleting the values once you click add.
-        website_input.delete(0, END)
-        password_input.delete(0, END)
-        email_input.delete(0, END)
+            with open("Password record.json", mode ="r") as files:
+                # Saving the updated data:
+                json.dump(data, files, indent=3)
+        finally:
+            # Todo: deleting the values once you click add.
+            website_input.delete(0, END)
+            password_input.delete(0, END)
+            email_input.delete(0, END)
     else:
         messagebox.showinfo(title="Oops", message=" Please dont leve the fields empty!")
 

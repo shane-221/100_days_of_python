@@ -16,7 +16,7 @@ window1.config(padx=20,pady=20)
 
 # Todo: Canvas with the image
 canvas = Canvas( width = 200,height= 200, highlightthickness= 0)
-logo_ing =PhotoImage(file ="../logo.png")
+logo_ing =PhotoImage(file ="../../Day 30 - Errors, Exceptions, JSON Data/Using JSON to search/logo.png")
 canvas.create_image(100, 100, image= logo_ing )
 canvas.grid(row= 0,column =1)
 
