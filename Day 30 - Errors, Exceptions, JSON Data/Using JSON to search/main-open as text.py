@@ -40,10 +40,15 @@ def save():
         # Todo: making sure that the values are correct:
 
     if len(website_value) != 0 and len(email_value) != 0 and len(password_value) != 0:
-        dataset = f"{website_value} -{email_value} - {password_value}\n"
-        with open("Password record.json", mode ="w") as files:
-                                                                                                                        # New thing
-            json.dump(new_data,"Password record.json", indent= 3)
+        with open("Password record.json", mode ="r") as files:
+            # Reloading the old data:
+            data = json.load(files)
+            # Updating the data:
+            data.update(new_data)
+            with open("Password record.json", mode="w") as new_files:
+            # Saving the updated data:
+            json.dump(data, new_files, indent = 3)
+
         # Todo: deleting the values once you click add.
         website_input.delete(0, END)
         password_input.delete(0, END)
