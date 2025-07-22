@@ -90,9 +90,15 @@ def search():
 
     # Todo: Pull the JSON File as a dictionary
     with open("Password record.json", "r") as complete_data:
-        data = json.load(complete_data)
-        # Todo: check and present the data.
+
         try:
+            data = json.load(complete_data)
+
+        except (KeyError , FileNotFoundError):
+            messagebox.showinfo(title="Your Details",
+                                message="No data!"
+                                )
+        else:
             if key in data:
                 messagebox.showinfo(title="Your Details",
                             message=f"""
@@ -103,10 +109,6 @@ def search():
                 messagebox.showinfo(title="Your Details",
                             message="No data!"
                                     )
-        except (KeyError , FileNotFoundError):
-            messagebox.showinfo(title="Your Details",
-                                message="No data!"
-                                )
 
 
 #--------------------------------UI Interface -------------------------------------------------------------------------#
