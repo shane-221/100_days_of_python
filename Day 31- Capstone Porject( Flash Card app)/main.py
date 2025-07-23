@@ -37,6 +37,5 @@ canvas.create_text( 200, 200, text = "French Word ", font= FONT_HEADING)
 
 
 
-
 #-----------------------------------------------------Exit when needed-------------------------------------------------#
 window.mainloop()
