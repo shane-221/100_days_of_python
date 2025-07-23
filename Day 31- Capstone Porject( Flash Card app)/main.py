@@ -1,41 +1,53 @@
 from tkinter import *
+import pandas as pd
+# #----------------------------------------------------- Constants-------------------------------------------------------#
+# FONT_HEADING = ( " Arial", 18, "bold")
+# FONT_GENERAL= ( " Arial", 22, "italic")
+# BACKGROUND_COLOUR= "#B1DDC6"
+# #-----------------------------------------------------UI Interface-----------------------------------------------------#
+#                 ########################--- Building the Screen---########################
+# # Todo: Window function
+# window = Tk()
+# window.title("Flashcard App" )
+# window.config(padx=20, pady= 20, bg=BACKGROUND_COLOUR)
+#
+# # Todo: Canvas to create the front card
+# canvas = Canvas (width= 800, height  = 526)
+# front_logo= PhotoImage(file ="./images/card_front.png")
+# canvas.create_image(400, 263, image = front_logo)
+# canvas.config(bg = BACKGROUND_COLOUR, highlightthickness=0)
+# canvas.grid(row=0, column =0,columnspan= 2)
+#
+#                     ####################---Words on the Canvas---########################
+# # Todo: Adding the foreign language text onto the canvas
+#
+# canvas.create_text( 400,  200,text = "French ", font= FONT_GENERAL)
+# canvas.create_text( 400, 300, text = "French Word ", font= FONT_HEADING)
+#
+#
+#                     ####################---Buttons on the Screen---######################
+# # Todo: Canvas to create the right card
+#
+# right_logo= PhotoImage(file = "./images/right.png")
+# right_button  = Button(image= right_logo, bg=BACKGROUND_COLOUR)
+# right_button.grid(row=1, column =1)
+#
+# # Todo: Canvas to create the wrong card
+#
+# wrong_logo= PhotoImage(file ="./images/wrong.png")
+# wrong_button  = Button(image= wrong_logo, bg=BACKGROUND_COLOUR)
+# wrong_button.grid(row=1, column =0)
 
-#----------------------------------------------------- Constants-------------------------------------------------------#
-FONT_HEADING = ( " Arial", 18, "bold")
-FONT_GENERAL= ( " Arial", 22, "italic")
-BACKGROUND_COLOUR= "#00FF7F"
-#-----------------------------------------------------UI Interface-----------------------------------------------------#
-                ########################--- Building the Screen---########################
-# Todo: Window function
-window = Tk()
-window.title("Flashcard App" )
-window.config(padx=20, pady= 20, bg=BACKGROUND_COLOUR)
+#---------------------------------------------------Functionality of the Button ---------------------------------------#
+# Todo: Opening the dataset
+dataset= pd.read_csv("./data/french_words.csv")
+# Todo: Turning them into key value pairs with each row
+dataset = dataset.to_dict(orient= "records")
+# Todo: Matching them into french: english pairs
+combined_data = { item["French"]: item["English"] for item in dataset }
 
-# Todo: Canvas to create the front card
-canvas = Canvas (width= 400, height  = 300)
-front_logo= PhotoImage(file ="./images/card_front.png")
-canvas.create_image(200, 150, image = front_logo)
-canvas.grid(row=0, column =0, pady= 50, padx= 50, columnspan= 2)
-
-                    ####################---Buttons on the Screen---######################
-# Todo: Canvas to create the right card
-canvas1 = Canvas (width=  100, height  = 100)
-right_logo= PhotoImage(file = "./images/right.png")
-canvas1.create_image(50, 50, image = right_logo)
-canvas1.grid(row=1, column =1, pady= 2, padx= 2)
-
-# Todo: Canvas to create the wrong card
-canvas2 = Canvas (width= 100, height  = 100)
-wrong_logo= PhotoImage(file ="./images/wrong.png")
-canvas2.create_image(50, 50, image = wrong_logo)
-canvas2.grid(row=1, column =0, pady= 2, padx= 2)
-                    ####################---Words on the Canvas---########################
-#Todo: Adding the foreign language text onto the canvas
-
-canvas.create_text( 200,  100,text = "French ", font= FONT_GENERAL)
-canvas.create_text( 200, 200, text = "French Word ", font= FONT_HEADING)
 
 
 
 #-----------------------------------------------------Exit when needed-------------------------------------------------#
-window.mainloop()
+#window.mainloop()
