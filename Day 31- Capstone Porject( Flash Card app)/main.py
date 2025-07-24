@@ -15,10 +15,11 @@ combined_data = { item["French"]: item["English"] for item in dataset }
 list_of_french = [ item for item in combined_data]
 
 # Todo: word changes anytime the button is clicked
-n=0
+n =0
 def next_foreign_word():
-    word = list_of_french[n]
-    n+1
+    global  n
+    n += 1
+    canvas.itemconfig(foreign_word_text, text=f"{list_of_french[n]}")
 
 
 
@@ -39,21 +40,21 @@ canvas.grid(row=0, column =0,columnspan= 2)
                     ####################---Words on the Canvas---########################
 # Todo: Adding the foreign language text onto the canvas
 
-canvas.create_text( 400,  200,text = "French ", font= FONT_GENERAL)
-canvas.create_text( 400, 300, text = "French Word ", font= FONT_HEADING)
+title_foreign_word = canvas.create_text( 400,  200,text = "French ", font= FONT_GENERAL)
+foreign_word_text = canvas.create_text( 400, 300, text = f"{list_of_french[n]} ", font= FONT_HEADING)
 
 
                     ####################---Buttons on the Screen---######################
 # Todo: Canvas to create the right card
 
 right_logo= PhotoImage(file = "./images/right.png")
-right_button  = Button(image= right_logo, bg=BACKGROUND_COLOUR)
+right_button  = Button(image= right_logo, bg=BACKGROUND_COLOUR, command = next_foreign_word)
 right_button.grid(row=1, column =1)
 
 # Todo: Canvas to create the wrong card
 
 wrong_logo= PhotoImage(file ="./images/wrong.png")
-wrong_button  = Button(image= wrong_logo, bg=BACKGROUND_COLOUR)
+wrong_button  = Button(image= wrong_logo, bg=BACKGROUND_COLOUR, command= next_foreign_word)
 wrong_button.grid(row=1, column =0)
 
 
