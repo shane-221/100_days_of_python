@@ -47,12 +47,27 @@ def start_loop():
     # Todo : added the timer cancel through the buttons + If it cancels start back at this loop.
 
 
-# Todo: cancel the timer if they click it:
-def cancel_timer():
-    # Todo: Clicking resets the timer
+# Todo: cancel the timer if they click it + Letter removed from the original list   s:
+def right_timer():
     window.after_cancel( timer)
-    # Todo: Goes back to the start loop for the french
+    dataset.remove(current_word)
     start_loop()
+
+
+
+# Todo: cancel the timer if they click it + Letter removed from the original list   s:
+def wrong_timer():
+    window.after_cancel( timer)
+    dataset.remove(current_word)
+    current_wor = pd.DataFrame([current_word], columns =["French", "English"])
+    try:
+        with open("./data/Words_to_learn", mode= "r"):
+            current_wor.to_csv("./data/Words_to_learn.csv", mode= "a", header = False, index= False)
+    except FileNotFoundError:
+        current_wor.to_csv("./data/Words_to_learn.csv", mode="a", header= True, index= False)
+    finally:
+        start_loop()
+
 
 
 
@@ -88,13 +103,13 @@ word_text = canvas.create_text( 400, 300, text = f"" , font= FONT_HEADING)
 # Todo: Canvas to create the right card
 
 right_logo= PhotoImage(file = "./images/right.png")
-right_button  = Button(image= right_logo, bg=BACKGROUND_COLOUR, command = cancel_timer)
+right_button  = Button(image= right_logo, bg=BACKGROUND_COLOUR, command = right_timer)
 right_button.grid(row=1, column =1)
 
 # Todo: Canvas to create the wrong card
 
 wrong_logo= PhotoImage(file ="./images/wrong.png")
-wrong_button  = Button(image= wrong_logo, bg=BACKGROUND_COLOUR, command= cancel_timer)
+wrong_button  = Button(image= wrong_logo, bg=BACKGROUND_COLOUR, command= wrong_timer)
 wrong_button.grid(row=1, column =0)
 
 #--------------------------------------------- Running the system as a loop------------------------------------------#
