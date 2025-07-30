@@ -21,8 +21,17 @@ response.raise_for_status()
 # Todo: Getting the data as a JSON Format
 data= response.json()
 
-# Todo:
+# Todo:Get the sunrise and the sunset data
 sunrise= data["results"]["sunrise"]
 sunset = data ["results"]["sunset"]
 
+
+
+# Todo: split the sunrise data and sunset data
+print((sunrise.split("T")[1].split(":")))
+
+
+# Todo: Print the data
 print(sunset)
+
+    # Can use the date time function to make the comparison to work out the difference betwen now and sunrise + sunset
