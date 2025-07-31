@@ -1,10 +1,14 @@
 import requests
 from datetime import datetime
+import smtplib
 
 
 #----------------------------------------------Constants---------------------------------------------------------------#
 MY_LAT = 51.507351 # Your latitude
 MY_LONG = -0.127758 # Your longitude
+
+my_email= "shanemathew988@gmail.com"
+password ="ysma qkrh kwdx joxx"
 
 #----------------------------------------------- API Request ----------------------------------------------------------#
 # Todo : Raise the request  for the ISS Position
@@ -30,14 +34,30 @@ data = response.json()
 sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
 sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
 print(f"sunrise:{sunrise}")
+print(f"sunset:{sunset}")
 #-----------------------------------Checking against the requests to send email----------------------------------------#
 time_now = datetime.now()
-print(time_now)
+# Todo: when it is dark
+if  (time_now.hour> sunset) or (time_now.hour<sunrise):
+    # Todo: The ISS is close to my location
+    if (MY_LAT-5<= iss_latitude <= MY_LAT + 5) and  (MY_LONG- 5<= iss_longitude <= MY_LONG+5):
+        # Todo: send email if its close
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(
+                                user = my_email,
+                                password = password
+                            )
+            connection.sendmail(
+                                from_addr=my_email ,
+                                to_addrs= my_email, 
+                                msg ="Subject: ISS above you!\n "
+                                     "Please look up! The ICC Space station is right above you! "
+            )
 
 
-#If the ISS is close to my current position
-# and it is currently dark
-# Then send me an email to tell me to look up.
+
+
 # BONUS: run the code every 60 seconds.
 
 
