@@ -50,7 +50,7 @@ if  (time_now.hour> sunset) or (time_now.hour<sunrise):
                             )
             connection.sendmail(
                                 from_addr=my_email ,
-                                to_addrs= my_email, 
+                                to_addrs= my_email,
                                 msg ="Subject: ISS above you!\n "
                                      "Please look up! The ICC Space station is right above you! "
             )
