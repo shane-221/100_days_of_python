@@ -11,12 +11,12 @@ for question in question_data:
     question_bank.append(new_question)
 
 
-
+print(question_bank.)
 
 
 quiz = QuizBrain(question_bank)
 user_interface= UserInterface()
-user_interface.question_upload(question_text)
+user_interface.question_upload()
 
 
 
