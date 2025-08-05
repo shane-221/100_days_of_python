@@ -12,7 +12,7 @@ for question in question_data:
 
 quiz = QuizBrain(question_bank)
 user_interface= UserInterface(quiz)
-user_interface.question_upload()
+user_interface.question_upload(question_bank)
 
 
 
