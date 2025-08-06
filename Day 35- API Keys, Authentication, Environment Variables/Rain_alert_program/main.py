@@ -23,7 +23,9 @@ print(response)
 weather_data = response.json()
 # Todo: getting the codes for all the items.
 #print(weather_data["list"][0]["weather"][0]["id"])
-weather_codes =[x["weather"][0]["id"]for x in weather_data["list"] ]
+weather_codes =[int(x["weather"][0]["id"]) for x in weather_data["list"] ]
 
 if 700 in weather_codes:
     print(" Bring an umbrella")
+
+#---------------------------------------------- Sending an SMS app-----------------------------------------------------#
