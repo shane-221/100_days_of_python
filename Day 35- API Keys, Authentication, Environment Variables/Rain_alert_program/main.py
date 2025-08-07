@@ -1,11 +1,13 @@
 import requests
 import smtplib
+import os
 
 
 
 #-------------------------------------------------- Constants----------------------------------------------------------#
 OWM_ENDPOINT= "https://api.openweathermap.org/data/2.5/forecast?"
-API_KEY= "3e24f9a482c9a6d6cd7749d499de293e"
+API_KEY= os.environ.get("API_KEY")
+print(f"API_KEY loaded: {API_KEY}")
 
 weather_paramas={
     "lon" : -0.127758,
