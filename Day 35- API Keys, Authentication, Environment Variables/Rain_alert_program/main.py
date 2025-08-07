@@ -1,4 +1,5 @@
 import requests
+import smtplib
 
 
 
@@ -12,7 +13,9 @@ weather_paramas={
     "appid" : API_KEY,
     "cnt": 4
    }
-
+MY_EMAIL= None
+PASSWORD= None
+TO_EMAIL=None
 #------------------------------------------------- Request the data----------------------------------------------------#
 response =requests.get(url=OWM_ENDPOINT, params=weather_paramas )
 response.raise_for_status()
@@ -25,7 +28,16 @@ weather_data = response.json()
 #print(weather_data["list"][0]["weather"][0]["id"])
 weather_codes =[int(x["weather"][0]["id"]) for x in weather_data["list"] ]
 
-if 700 in weather_codes:
-    print(" Bring an umbrella")
 
-#---------------------------------------------- Sending an SMS app-----------------------------------------------------#
+
+#---------------------------------------------- Sending an email -----------------------------------------------------#
+# Can use the email module to send email if it rains ---> run it in the moning using Python Anywhere and host the code
+## on the cloud.
+
+if 700 in weather_codes:
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user= MY_EMAIL, password=PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL,
+                            to_addrs=TO_EMAIL,
+                            msg=f"Subject: It will rain!!\n Bring an umbrella please")
