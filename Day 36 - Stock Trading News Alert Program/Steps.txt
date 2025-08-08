@@ -2,7 +2,7 @@ Steps to complete Trading News Alert Program
 
 1) Pull the current stock price for companies( at current)
 
-2) Look at the market price at close
+2) Look at the market price at close- yesterday close data
 
 3) Analyse it: Check if the price has gone up or not + Check the percentage rise or fall
 
