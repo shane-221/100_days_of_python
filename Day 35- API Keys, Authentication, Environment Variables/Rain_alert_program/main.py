@@ -7,6 +7,7 @@ import os
 #-------------------------------------------------- Constants----------------------------------------------------------#
 OWM_ENDPOINT= "https://api.openweathermap.org/data/2.5/forecast?"
 API_KEY= os.environ.get("API_KEY")
+    # Check to see how it works
 print(f"API_KEY loaded: {API_KEY}")
 
 weather_paramas={
@@ -15,9 +16,9 @@ weather_paramas={
     "appid" : API_KEY,
     "cnt": 4
    }
-MY_EMAIL= None
-PASSWORD= None
-TO_EMAIL=None
+MY_EMAIL= os.environ.get("MY_EMAIL")
+PASSWORD= os.environ.get("PASSWORD")
+TO_EMAIL=os.environ.get("TO_EMAIL")
 #------------------------------------------------- Request the data----------------------------------------------------#
 response =requests.get(url=OWM_ENDPOINT, params=weather_paramas )
 response.raise_for_status()
