@@ -8,4 +8,4 @@ Steps to complete Trading News Alert Program
 
 4) Pull the news for the Extraordinary rise or fall of items( say 10% rise or fall)
 
-5) Send an email or SMS: What is the Big fluctuation and what was the news relevant to this. 
+5) Send an email or SMS: What is the Big fluctuation and what was the news relevant to this.
