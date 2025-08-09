@@ -34,7 +34,8 @@ current_price= float((data["Global Quote"]["05. price"]).strip())
 #
 #----------------------------------------Step 3 and Step 4-------------------------------------------------------------#
 percent_change = float(round((((current_price- close_price)/ close_price)*100), 4))
-
+#
+    # Todo: Calrifing condition to send the email
 if percent_change<-10 or percent_change>10:
     pass
 
@@ -47,12 +48,20 @@ news_parameters={
             "sort": "popularity",
             "pageSize": "2"
                 }
+    # Todo: News email request
 news_request = requests.get(url=NEWS_URL, params=  news_parameters)
 news_request.raise_for_status()
 news_data = news_request.json()
-print(news_data)
-
-
-
+    # Todo: Converting the data into a useful format: using list comprehesion to make it easier( Could use JSON as well)
+article_list=[ x for x in news_data["articles"]]
+with open(file= "./ File to Send", mode= "w") as file:
+    f"{COMPANY_NAME}: {percent_change}"
+    "Articles:\n"
+    for i in article_list:
+        f"""
+        Title:{source["title"]}\n
+            Name of the author:{source["author"]}\n
+            Summary:{source["description"]}\n\n
+        """
 
 
