@@ -2,6 +2,7 @@
 import requests
 import os
 
+from unicodedata import digit
 
 #---------------------------------------------------Constants ---------------------------------------------------------#
 STOCK = "IBM"
@@ -19,13 +20,15 @@ price_parameters ={
     # Todo: Sending the request FOR the data
 price_request= requests.get(url=url, params= price_parameters)
 data= price_request.json()
+print(data)
 
 
     # Todo : Pulling the relevant variables out( Current Price, Yesterdays price,and changes
 
-close_price=int((data["Global Quote"]["08. previous close"]).strip())
-current_price= int((data["Global Quote"]["05. price"]).strip())
-percent_change =data["Global Quote"]["10. change percent"]
+close_price=float((data["Global Quote"]["08. previous close"]).strip())
+current_price= float((data["Global Quote"]["05. price"]).strip())
+percent_change = float(round((((current_price- close_price)/ close_price)*100), 4))
+
 
 
 
