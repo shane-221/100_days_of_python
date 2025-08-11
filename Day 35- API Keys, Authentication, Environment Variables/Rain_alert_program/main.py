@@ -24,7 +24,7 @@ try:
     response =requests.get(url=OWM_ENDPOINT, params=weather_params)
     response.raise_for_status()
 except requests.exceptions.HTTPError as e:
-    # This code is from the documentation 
+    # This code is from the documentation
     print("HTTP error occurred:", e)
 
 #------------------------------------------------ Storing and Using the data-------------------------------------------#
