@@ -1,5 +1,6 @@
 #---------------------------------------------Import functions---------------------------------------------------------#
 import requests
+from datetime import datetime
 
 
 #-----------------------------------------------Constants--------------------------------------------------------------#
@@ -12,6 +13,7 @@ GRAPH_ID= "graph1"
 
 
 #-----------------------------------------------Parameters for the request---------------------------------------------#
+# Todo: Getting the user built
 url_endpoint= "https://pixe.la/v1/users"
 # user_params ={
 #     "token": TOKEN,
@@ -19,7 +21,7 @@ url_endpoint= "https://pixe.la/v1/users"
 #     "agreeTermsOfService": AGREE_TERMS_OF_SERVICE,
 #     "notMinor":NOT_MINOR
 #             }
-
+# Todo: Creating a new graph
 graph_endpoint =f"{url_endpoint}/{USERNAME}/graphs"
 graph_params ={
     "id":"graph1",
@@ -28,9 +30,11 @@ graph_params ={
     "type":"float",
     "color": "momiji"
 }
+# Todo: Adding data into the graph
 unit_endpoint =f"{url_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+today = datetime.now()
 unit_params ={
-    "date":"20250912",
+    "date":today.strftime("%Y%m%d"),
     "quantity":"3"
 }
 #-------------------------------------------Post request---------------------------------------------------------------#
