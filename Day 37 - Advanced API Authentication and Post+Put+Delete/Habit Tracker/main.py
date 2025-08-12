@@ -1,13 +1,14 @@
 #---------------------------------------------Import functions---------------------------------------------------------#
 import requests
-from openpyxl.formula.tokenizer import Token
+
 
 #-----------------------------------------------Constants--------------------------------------------------------------#
 TOKEN = "qwertyuiop1998!"
 USERNAME = "shane98"
 AGREE_TERMS_OF_SERVICE = "yes"
 NOT_MINOR = "yes"
-headers = {"X-USER-TOKEN":TOKEN}
+HEADERS= {"X-USER-TOKEN":TOKEN}
+GRAPH_ID= "graph1"
 
 
 #-----------------------------------------------Parameters for the request---------------------------------------------#
@@ -27,12 +28,20 @@ graph_params ={
     "type":"float",
     "color": "momiji"
 }
-
+unit_endpoint =f"{url_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+unit_params ={
+    "date":"20250912",
+    "quantity":"3"
+}
 #-------------------------------------------Post request---------------------------------------------------------------#
     # Todo: creating a new user using the arguments provided and the use of json data as a function.
 # request = requests.post(url=url_endpoint,json=user_params)
 # print(request.text)
 
 #--------------------------------------Post request for a  graph-------------------------------------------------------#
-request = requests.post(url=graph_endpoint,json=graph_params, headers= headers)
-print(request.text)
+# request = requests.post(url=graph_endpoint,json=graph_params, headers= HEADERS)
+# print(request.text)
+
+#----------------------------------------Posting a unit fo data into the graph-----------------------------------------#
+requests=requests.post(url =unit_endpoint, json= unit_params, headers= HEADERS)
+print(requests.text)
