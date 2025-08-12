@@ -15,12 +15,12 @@ GRAPH_ID= "graph1"
 #-----------------------------------------------Parameters for the request---------------------------------------------#
 # Todo: Getting the user built
 url_endpoint= "https://pixe.la/v1/users"
-# user_params ={
-#     "token": TOKEN,
-#     "username":USERNAME,
-#     "agreeTermsOfService": AGREE_TERMS_OF_SERVICE,
-#     "notMinor":NOT_MINOR
-#             }
+user_params ={
+    "token": TOKEN,
+    "username":USERNAME,
+    "agreeTermsOfService": AGREE_TERMS_OF_SERVICE,
+    "notMinor":NOT_MINOR
+            }
 # Todo: Creating a new graph
 graph_endpoint =f"{url_endpoint}/{USERNAME}/graphs"
 graph_params ={
@@ -33,19 +33,37 @@ graph_params ={
 # Todo: Adding data into the graph
 unit_endpoint =f"{url_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 today = datetime.now()
+date_format = today.strftsime("%Y%m%d")
 unit_params ={
-    "date":today.strftime("%Y%m%d"),
+    "date":date_format,
     "quantity":"3"
-}
+             }
+
+# Todo: Updating datapoints depending on the data
+update_endpoint =f"{url_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{date_format}"
+update_params ={
+    "quantity": "4.5"
+                }
+# Todo: Deleting a pixel
+delete_endpoint =f"{url_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{date_format}"
+
 #-------------------------------------------Post request---------------------------------------------------------------#
-    # Todo: creating a new user using the arguments provided and the use of json data as a function.
-# request = requests.post(url=url_endpoint,json=user_params)
-# print(request.text)
+
+requests1= requests.post(url=url_endpoint,json=user_params)
+print(request1.text)
 
 #--------------------------------------Post request for a  graph-------------------------------------------------------#
-# request = requests.post(url=graph_endpoint,json=graph_params, headers= HEADERS)
-# print(request.text)
+requests2= requests.post(url=graph_endpoint,json=graph_params, headers= HEADERS)
+print(requests2.text)
 
 #----------------------------------------Posting a unit fo data into the graph-----------------------------------------#
-requests=requests.post(url =unit_endpoint, json= unit_params, headers= HEADERS)
-print(requests.text)
+requests3=requests.post(url =unit_endpoint, json= unit_params, headers= HEADERS)
+print(requests3.text)
+
+#----------------------------------------Updating a Pixel--------------------------------------------------------------#
+requests4=requests.put(url =update_endpoint, headers= HEADERS)
+print(requests4.text)
+
+#--------------------------------------------Deleting a pixel ---------------------------------------------------------#
+requests5=requests.put(url =update_endpoint, json= update_params, headers= HEADERS)
+print(requests5.text)
