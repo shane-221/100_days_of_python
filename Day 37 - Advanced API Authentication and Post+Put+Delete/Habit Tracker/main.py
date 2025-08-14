@@ -36,7 +36,7 @@ today = datetime.now()
 date_format = today.strftsime("%Y%m%d")
 unit_params ={
     "date":date_format,
-    "quantity":"3"
+    "quantity":input("How many KM did you run today")
              }
 
 # Todo: Updating datapoints depending on the data
