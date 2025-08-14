@@ -16,7 +16,7 @@ user_query= input("Tell me which exercises you did?")
 # Todo: Sheet Constants
 sheet_url= "https://api.sheety.co/9752de018a3428b69d12669130155572/workoutTracker/sheet1'"
 
-#---------------------------------------------------Parameters---------------------------------------------------------#
+#---------------------------------------------------Calorie request----------------------------------------------------#
 # Todo : Parameters for the calorie API
 exercise_parameters = {
     "weight_kg" : 80,
@@ -26,12 +26,27 @@ exercise_parameters = {
     "query": user_query
                     }
 
-# Todo: Parameter for the Sheetly api to put data into the excel sheet.
-time_now= datetime.now()
-
-
-
-#-------------------------------------------------Requests-------------------------------------------------------------#
 # Todo: Request for the exercise parameters to get the calories and time
 post_request = requests.post(url=calorie_url, headers=headers, json=exercise_parameters )
+    # This is a response object. Then need to convert it into json to be usable
+data =post_request.json()
+
+#-------------------------------------------------Requests-------------------------------------------------------------#
+# Todo: Parameter for the Sheetly api to put data into the excel sheet.
+date_now= datetime.now()
+exercise = data["exercises"][0]["user_input"]
+duration=  data["exercises"][0]["duration_min"]
+calories  = data["exercises"][0]["nf_calories"]
+
+print(exercise)
+print(duration)
+print(calories)
+
+
+# sheet_params= {"Date":date_now,
+#                "Time": "15:00",
+#                "Exercise": }
+#
+# # Todo; Send request for the sheetly to google sheets
+# sheet_request= requests.post(url = sheet_url)
 
