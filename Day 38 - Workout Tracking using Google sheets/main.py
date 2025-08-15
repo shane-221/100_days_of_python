@@ -14,7 +14,7 @@ calorie_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
 user_query= input("Tell me which exercises you did?")
 
 # Todo: Sheet Constants
-sheet_url= "https://api.sheety.co/9752de018a3428b69d12669130155572/workoutTracker/sheet1'"
+sheet_url= "https://api.sheety.co/9752de018a3428b69d12669130155572/workoutTracker/sheet1"
 
 #---------------------------------------------------Calorie request----------------------------------------------------#
 # Todo : Parameters for the calorie API
@@ -30,26 +30,28 @@ exercise_parameters = {
 post_request = requests.post(url=calorie_url, headers=headers, json=exercise_parameters )
     # This is a response object. Then need to convert it into json to be usable
 data =post_request.json()
-
+print(data)
 #--------------------------------------------sheetly request-----------------------------------------------------------#
 # Todo: Parameter for the Sheetly api to put data into the excel sheet.
-date_now= datetime.now()
+date_time_now= datetime.now()
+date_now=date_time_now.strftime("%x")
+time_now= date_time_now.strftime("%X")
 exercise = data["exercises"][0]["user_input"]
 duration=  data["exercises"][0]["duration_min"]
 calories  = data["exercises"][0]["nf_calories"]
 
-print(exercise)
-print(duration)
-print(calories)
 
 
-sheet_params= {"Date":f"{date_now}",
-               "Time": f"{date_now}",
-               "Exercise":{exercise},
-               "Duration":{duration},
-                "Calories":{calories}
-                }
-
+sheet_params= {"sheet1":
+                   {"date":date_time_now.strftime("%x"),
+                    "time": date_time_now.strftime("%X"),
+                    "exercise":data["exercises"][0]["user_input"],
+                    "duration":data["exercises"][0]["duration_min"],
+                    "calories":data["exercises"][0]["nf_calories"]
+                }}
+print(sheet_params)
 # Todo; Send request for the sheetly to google sheets
-sheet_request= requests.post(url = sheet_url)
+sheet_request= requests.post(url = sheet_url, json= sheet_params)
+sheet_request.raise_for_status()
+
 
