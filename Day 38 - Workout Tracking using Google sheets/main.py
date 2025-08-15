@@ -2,23 +2,9 @@
 import requests
 from datetime import datetime
 import os
-
-#-------------------------------------------Constants that are important to the code-----------------------------------#
-# tODO : Header data for the calorie request
-headers ={
-    "x-app-key" :os.environ.get("app-key"),
-    "x-app-id": os.environ.get("app-id")
-}
-# Todo: Calorie constants
-calorie_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
-user_query= input("Tell me which exercises you did?")
-
-# Todo: Sheet Constants
-sheet_url= os.environ.get("sheet-url")
-sheet_headers = os.environ.get("sheet_headers")
-
-#---------------------------------------------------Calorie request----------------------------------------------------#
+#------------------------------------------Constants related to the individual-----------------------------------------#
 # Todo : Parameters for the calorie API
+user_query= input("Tell me which exercises you did?")
 exercise_parameters = {
     "weight_kg" : 80,
     "height_cm" : 194,
@@ -26,6 +12,21 @@ exercise_parameters = {
     "gender": "male",
     "query": user_query
                     }
+
+#-------------------------------------------Data that is important are important to the code---------------------------#
+# tODO : Header data for the calorie request
+headers ={
+    "x-app-key" :os.environ.get("app-key"),
+    "x-app-id": os.environ.get("app-id")
+}
+# Todo: Calorie constants
+calorie_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
+
+
+# Todo: Sheet Constants
+sheet_url= os.environ.get("sheet-url")
+sheet_headers = {"Authorization" :os.environ.get("sheet_headers")}
+#---------------------------------------------------Calorie request----------------------------------------------------#
 
 # Todo: Request for the exercise parameters to get the calories and time
 post_request = requests.post(url=calorie_url, headers=headers, json=exercise_parameters )
@@ -37,8 +38,6 @@ print( data)
 date_time_now= datetime.now()
 date_now=date_time_now.strftime("%x")
 time_now= date_time_now.strftime("%X")
-
-
 
 sheet_params= {"sheet1":
                    {"date":date_time_now.strftime("%x"),
