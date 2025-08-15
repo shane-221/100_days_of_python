@@ -31,7 +31,7 @@ post_request = requests.post(url=calorie_url, headers=headers, json=exercise_par
     # This is a response object. Then need to convert it into json to be usable
 data =post_request.json()
 
-#-------------------------------------------------Requests-------------------------------------------------------------#
+#--------------------------------------------sheetly request-----------------------------------------------------------#
 # Todo: Parameter for the Sheetly api to put data into the excel sheet.
 date_now= datetime.now()
 exercise = data["exercises"][0]["user_input"]
@@ -43,10 +43,13 @@ print(duration)
 print(calories)
 
 
-# sheet_params= {"Date":date_now,
-#                "Time": "15:00",
-#                "Exercise": }
-#
-# # Todo; Send request for the sheetly to google sheets
-# sheet_request= requests.post(url = sheet_url)
+sheet_params= {"Date":f"{date_now}",
+               "Time": f"{date_now}",
+               "Exercise":{exercise},
+               "Duration":{duration},
+                "Calories":{calories}
+                }
+
+# Todo; Send request for the sheetly to google sheets
+sheet_request= requests.post(url = sheet_url)
 
