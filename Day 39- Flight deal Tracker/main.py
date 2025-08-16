@@ -1,11 +1,12 @@
 # Purpose:  This section looks at the IATA Codes and populates them.
 
 import requests
+import os
 
 # ----------------------------------------Pulling the data from Sheetly------------------------------------------------#
 # Todo: Prep part for the initial request
-sheet_url= "https://api.sheety.co/9752de018a3428b69d12669130155572/me:FlightDeals/prices"
-sheetly_token ="Basic bnVsbDpudWxs"
+sheet_url= os.environ.get("sheetly_url")
+sheetly_token =os.environ.get("sheetly_token")
 sheetly_header ={"Authorization": sheetly_token}
 
 # Todo: Sending a get request
