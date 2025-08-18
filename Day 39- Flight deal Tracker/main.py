@@ -16,13 +16,12 @@ except Exception as e:
     print(F" There is an error:{e}")
 finally:
     # Use list comprehension to update the data
-    iata_data = []
+    sheetly_data = data_iata_codes.json()
 
 
-
-#------------------------------------------ Getting codes from the Amadeus API-----------------------------------------#
-for i in iata_data["prices"]:
-    print()
+#-----------------------------------Getting Countries for  the Amadeus API---------------------------------------------#
+# Todo: Getting a dictionary of interested countries and their prices as key valur pairs for comparison.
+interested_countries ={ x["city"]: x["lowestPrice"] for x in sheetly_data["prices"]}
 
 
 
