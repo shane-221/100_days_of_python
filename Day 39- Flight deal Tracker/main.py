@@ -2,19 +2,25 @@
 
 import requests
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
-# ----------------------------------------Pulling the data from Sheetly------------------------------------------------#
+
+# ----------------------------------------Sheetly key information------------------------------------------------------#
 # Todo: Prep part for the initial request
-sheet_url= os.environ.get("sheetly_url")
-sheetly_token =os.environ.get("sheetly_token")
-sheetly_header ={"Authorization": sheetly_token}
+
+
+SHEET_URL = os.getenv("sheet_url")
+SHEET_TOKEN =os.getenv("sheetly_token")
+sheetly_header ={"Authorization":SHEET_TOKEN}
 
 
 
+#------------------------------------------Get request to sheely to pull all the data----------------------------------#
 # Todo: Sending a get request
 try:
-    data_iata_codes= requests.get(url= sheet_url,  headers=sheetly_header)
+    data_iata_codes = requests.get(url= SHEET_URL,  headers=sheetly_header)
 except Exception as e:
     print(F" There is an error:{e}")
 finally:
@@ -23,8 +29,8 @@ finally:
 
 
 
-#-----------------------------------Getting Countries for  the Amadeus API---------------------------------------------#
-# Todo: Getting a dictionary of interested countries and their prices as key valur pairs for comparison.
+#-----------------------------------Getting Countries matched to Codes in Amadeus--------------------------------------#
+# Todo: Getting a dictionary of interested countries:( line number: IATA Code)
 countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
 
 for i in countries_iata_code:
@@ -34,7 +40,7 @@ for i in countries_iata_code:
         "iataCode": "Testing"}
     }
     if countries_iata_code[i][1]=="":
-        send_iata_code_request = requests.put(url=  f"{sheet_url}/{countries_iata_code[i][0]}",
+        send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
                                               headers=sheetly_header,
                                               json = payload_data)
         print( send_iata_code_request.status_code)
