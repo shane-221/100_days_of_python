@@ -17,7 +17,7 @@ sheetly_header ={"Authorization":SHEET_TOKEN}
 
 
 
-#------------------------------------------Get request to sheely to pull all the data----------------------------------#
+#------------------------------------------Get request to sheetly to pull all the data----------------------------------#
 # Todo: Sending a get request
 try:
     data_iata_codes = requests.get(url= SHEET_URL,  headers=sheetly_header)
