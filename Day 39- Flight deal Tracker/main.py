@@ -3,6 +3,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from New_token_from_amadeus import *
 load_dotenv()
 
 
@@ -15,7 +16,7 @@ SHEET_URL = os.getenv("sheet_url")
 SHEET_TOKEN =os.getenv("sheetly_token")
 sheetly_header ={"Authorization":SHEET_TOKEN}
 
-
+amadeus_city_url =f"{os.getenv("amadeus_url")}/reference-data/locations/cities"
 
 #------------------------------------------Get request to sheetly to pull all the data----------------------------------#
 # Todo: Sending a get request
@@ -35,15 +36,24 @@ countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_
 
 for i in countries_iata_code:
     # Todo: First check to see if the IATA Codes are populated. If not you neeed to connect ot Amadeus and find the code
-
-    payload_data={"price":{
-        "iataCode": "Testing"}
-    }
     if countries_iata_code[i][1]=="":
-        send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
-                                              headers=sheetly_header,
-                                              json = payload_data)
-        print( send_iata_code_request.status_code)
+        # Todo : Now in the conditional item. Need to check the current item against Amadeus
+        city_name=[i][0]
+        city = {"keyword": city_name}
+
+
+        amadeus_request= requests.get(url= amadeus_city_url,params= city_name )
+        print(amadeus_request.status_code)
+
+
+
+
+
+        # # Todo: Sending the final data through heetly to excel
+        # send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
+        #                                       headers=sheetly_header,
+        #                                       json = payload_data)
+        # print( send_iata_code_request.status_code)
 
 
 
