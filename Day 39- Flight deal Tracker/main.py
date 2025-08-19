@@ -32,11 +32,12 @@ finally:
 
 #-----------------------------------Getting Countries matched to Codes in Amadeus--------------------------------------#
 # Todo: Getting a dictionary of interested countries:( line number: IATA Code)
-countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
+countries_iata_code ={ x["city"]: (x["city"], int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
+print(countries_iata_code)
 
 for i in countries_iata_code:
     # Todo: First check to see if the IATA Codes are populated. If not you neeed to connect ot Amadeus and find the code
-    if countries_iata_code[i][1]=="":
+    if countries_iata_code[i][2]=="":
         # Todo : Now in the conditional item. Need to check the current item against Amadeus
         city_name=[i][0]
         city = {"keyword": city_name}
@@ -44,8 +45,6 @@ for i in countries_iata_code:
 
         amadeus_request= requests.get(url= amadeus_city_url,params= city_name )
         print(amadeus_request.status_code)
-
-
 
 
 
