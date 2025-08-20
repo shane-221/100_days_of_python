@@ -17,7 +17,7 @@ SHEET_URL = os.getenv("sheet_url")
 SHEET_TOKEN =os.getenv("sheetly_token")
 sheetly_header ={"Authorization":SHEET_TOKEN}
 
-amadeus_city_url =f"{os.getenv("amadeus_url")}/reference-data/locations/cities"
+amadeus_city_url =f"{os.getenv("amadeus_url")}/reference-data/locations"
 
 #------------------------------------------Get request to sheetly to pull all the data----------------------------------#
 # Todo: Sending a get request
@@ -32,32 +32,35 @@ finally:
 
 
 #-----------------------------------Getting Countries matched to Codes in Amadeus--------------------------------------#
-# Todo: Getting a dictionary of interested countries:( line number: IATA Code)
-countries_iata_code ={ x["city"]: (x["city"], int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
+# Todo: Getting a dictionary of interested countries:( line number: IATA Code) to be used in request etc
+countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
 
 get_token = BearerToken()
-get_header = {"Authorization": get_token.get_new_token()}
+get_header_token = {"Authorization": get_token.get_new_token()}
+
     # Placed outside the loop to make sure that rate limit is not met.
 for i in countries_iata_code:
     # Todo: First check to see if the IATA Codes are populated. If not you neeed to connect ot Amadeus and find the code
-    if countries_iata_code[i][2]=="":
+    if countries_iata_code[i][1]=="":
         # Todo : Now in the conditional item. Need to check the current item against Amadeus
-        city = {"keyword": i }
+        city = {"keyword": i ,
+                "subType": "CITY"}
 
+        # Todo:sending request with the missing item and authorization.
         try:
-            amadeus_request= requests.get(url= amadeus_city_url,params= city, headers = get_header )
+            amadeus_request= requests.get(url= amadeus_city_url,params= city, headers = get_header_token )
             amadeus_request.raise_for_status()
             data = amadeus_request.json()
-            print(data)
+
         except Exception as e:
             print(f" There is an error:{e}")
 
+        # Todo: adjust the old country_iata_code with the new IATA Code:
+        print(data["data"][0]["iataCode"])
 
 
 
-
-
-        # # Todo: Sending the final data through heetly to excel
+        # # Todo: Sending the final data through sheetly to excel
         # send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
         #                                       headers=sheetly_header,
         #                                       json = payload_data)
