@@ -4,8 +4,11 @@ load_dotenv()
 import requests
 import time
 
-# CheatGPT Recommended it to run 3 times uing the rage function in case time.sleep does not work.
-def get_iata(amadeus_city_url, city_name, ):
+# ChatGPT Recommended it to run 3 times using the rage function in case time.sleep does not work.Seems
+## like a good idea but did not implement it
+
+
+def get_iata(amadeus_city_url, city_name):
     get_token = BearerToken()
     get_header_token = {"Authorization": get_token.get_new_token()}
 
@@ -30,7 +33,7 @@ def get_iata(amadeus_city_url, city_name, ):
          return f"There is an error: {e}"
 
     finally:
-        if len(data["data"])>0:
+        if len(data['data'])>0:
             iata_code = data["data"][0]["iataCode"]
             return iata_code
 

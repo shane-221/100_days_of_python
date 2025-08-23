@@ -33,19 +33,24 @@ finally:
 #-----------------------------------Getting Countries matched to Codes in Amadeus--------------------------------------#
 # Todo: Getting a dictionary of interested countries:( line number: IATA Code) to be used in request etc
 countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
+final_country_iata_code =[]
 
     # Placed outside the loop to make sure that rate limit is not met.
 for i in countries_iata_code:
     # Todo: First check to see if the IATA Codes are populated. If not you neeed to connect ot Amadeus and find the code
     if countries_iata_code[i][1]=="":
         # Todo:sending request with the missing items using the module Get_IATA_Request
-            data = get_iata(amadeus_city_url=amadeus_city_url, city_name=i)
-            print(data)
+        data = get_iata(amadeus_city_url=amadeus_city_url, city_name=i)
 
+        # Todo: Data has come back from he request and the exception have been accounted for. Now need to update my list comprehension.
+        country = i
+        line_number =countries_iata_code[i][0]
+        IATA_code =data
+        final_country_iata_code.append({i:(line_number, IATA_code)})
+    else:
+        final_country_iata_code.append({i:(i[0], i[1])})
 
-
-
-
+print(final_country_iata_code)
 
 
         # # # Todo: Sending the final data through sheetly to excel
