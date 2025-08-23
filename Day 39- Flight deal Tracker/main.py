@@ -1,13 +1,12 @@
 # Purpose:  This section looks at the IATA Codes and populates them.
 
 
-
-from New_token_from_amadeus import *
 from dotenv import load_dotenv
 load_dotenv()
+from get_IATA_request import *
 import requests
 import os
-import time
+
 
 # ----------------------------------------Sheetly key information------------------------------------------------------#
 # Todo: Prep part for the initial request
@@ -35,48 +34,25 @@ finally:
 # Todo: Getting a dictionary of interested countries:( line number: IATA Code) to be used in request etc
 countries_iata_code ={ x["city"]: (int(x["id"]),x["iataCode"]) for x in sheetly_data["prices"]}
 
-get_token = BearerToken()
-get_header_token = {"Authorization": get_token.get_new_token()}
-
     # Placed outside the loop to make sure that rate limit is not met.
 for i in countries_iata_code:
     # Todo: First check to see if the IATA Codes are populated. If not you neeed to connect ot Amadeus and find the code
     if countries_iata_code[i][1]=="":
-        # Todo : Now in the conditional item. Need to check the current item against Amadeus
-        city = {"keyword": i ,
-                "subType": "CITY",
-                }
-
-        # Todo:sending request with the missing item and authorization.
-        try:
-            amadeus_request= requests.get(url= amadeus_city_url,params= city, headers = get_header_token )
-            data = amadeus_request.json()
-        except requestS.exception.HTTPError as e:
-            if e.response.statu_code==429:
-                time.sleep(2)
-                amadeus_request = requests.get(url=amadeus_city_url, params=city, headers=get_header_token)
-                data = amadeus_request.json()
-            else:
-                print(f"There is an  HTTP error: {e}")
-
-
-        except Exception as e:
-                print(f"There is an error: {e}")
-
-        finally:
-            if len(data["data"])>0:
-                iata_code = data["data"][0]["iataCode"]
-                print(iata_code)
-            else:
-                print(" No Code available")
+        # Todo:sending request with the missing items using the module Get_IATA_Request
+            data = get_iata(amadeus_city_url=amadeus_city_url, city_name=i)
+            print(data)
 
 
 
-        # # Todo: Sending the final data through sheetly to excel
-        # send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
-        #                                       headers=sheetly_header,
-        #                                       json = payload_data)
-        # print( send_iata_code_request.status_code)
+
+
+
+
+        # # # Todo: Sending the final data through sheetly to excel
+        # # send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
+        # #                                       headers=sheetly_header,
+        # #                                       json = payload_data)
+        # # print( send_iata_code_request.status_code)
 
 
 

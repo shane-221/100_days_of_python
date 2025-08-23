@@ -26,7 +26,6 @@ class BearerToken:
                     }
         try:
             connection =requests.post(url=self.amadeus_url, headers = self.header, data =self.body)
-            print(f"Status Code:{connection.status_code}")
             data= connection.json()
             bearer_token = f"Bearer {data["access_token"]}"
             return bearer_token
