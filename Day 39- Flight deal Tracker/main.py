@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import requests
 import os
-
+import time
 
 # ----------------------------------------Sheetly key information------------------------------------------------------#
 # Todo: Prep part for the initial request
@@ -44,19 +44,31 @@ for i in countries_iata_code:
     if countries_iata_code[i][1]=="":
         # Todo : Now in the conditional item. Need to check the current item against Amadeus
         city = {"keyword": i ,
-                "subType": "CITY"}
+                "subType": "CITY",
+                }
 
         # Todo:sending request with the missing item and authorization.
         try:
             amadeus_request= requests.get(url= amadeus_city_url,params= city, headers = get_header_token )
-            amadeus_request.raise_for_status()
             data = amadeus_request.json()
+        except requestS.exception.HTTPError as e:
+            if e.response.statu_code==429:
+                time.sleep(2)
+                amadeus_request = requests.get(url=amadeus_city_url, params=city, headers=get_header_token)
+                data = amadeus_request.json()
+            else:
+                print(f"There is an  HTTP error: {e}")
+
 
         except Exception as e:
-            print(f" There is an error:{e}")
+                print(f"There is an error: {e}")
 
-        # Todo: adjust the old country_iata_code with the new IATA Code:
-        print(data["data"][0]["iataCode"])
+        finally:
+            if len(data["data"])>0:
+                iata_code = data["data"][0]["iataCode"]
+                print(iata_code)
+            else:
+                print(" No Code available")
 
 
 
