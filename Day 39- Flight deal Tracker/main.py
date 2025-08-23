@@ -3,7 +3,7 @@
 
 from dotenv import load_dotenv
 load_dotenv()
-from get_IATA_request import *
+from Get_IATA_request import *
 import requests
 import os
 
@@ -52,6 +52,7 @@ for i in countries_iata_code:
 
 print(final_country_iata_code)
 
+#---------------------------------Sending the IATA Codes to Sheetly ---------------------------------------------------#
 
         # # # Todo: Sending the final data through sheetly to excel
         # # send_iata_code_request = requests.put(url=  f"{SHEET_URL}/{countries_iata_code[i][0]}",
