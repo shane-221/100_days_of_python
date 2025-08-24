@@ -33,7 +33,7 @@ def get_iata(amadeus_city_url, city_name):
          return f"There is an error: {e}"
 
     finally:
-        if len(data['data'])>0:
+        if ("data" in data) and (len(data['data']))>0:
             iata_code = data["data"][0]["iataCode"]
             return iata_code
 
