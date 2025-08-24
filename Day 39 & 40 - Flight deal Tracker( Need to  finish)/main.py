@@ -22,12 +22,12 @@ amadeus_city_url = f"{os.getenv("amadeus_url")}/reference-data/locations"
 # Todo: Sending a get request
 try:
     data_iata_codes = requests.get(url=SHEET_URL, headers=sheetly_header)
+    print(data_iata_codes.text)
 except Exception as e:
     print(F" There is an error:{e}")
 finally:
     # Use list comprehension to update the data
     sheetly_data = data_iata_codes.json()
-    print(sheetly_data)
 #-----------------------------------Getting Countries matched to Codes in Amadeus--------------------------------------#
 # Todo: Getting a dictionary of interested countries:( line number: IATA Code) to be used in request etc
 countries_iata_code = {x["city"]: (int(x["id"]), x["iataCode"]) for x in sheetly_data["prices"]}
@@ -62,4 +62,4 @@ for entry in final_country_iata_code:
         send_iata_code_request = requests.put(url=f"{SHEET_URL}/{row}",
                                               headers=sheetly_header,
                                               json=payload_data)
-        print(send_iata_code_request.status_code)
+        print(f"Amadeus:{send_iata_code_request.text}")
