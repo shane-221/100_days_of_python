@@ -43,6 +43,6 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/width
 
 /* changing the height and width of the images*/
 img {
-    width: 20px;
-    height: 20px;
+    width: 200px;
+    height: 200px;
 }
