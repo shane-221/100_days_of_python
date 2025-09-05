@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Box Model</title>
-  <style>
-    /* Write your CSS code here */
-
-  </style>
-</head>
-
-<body>
-
-
   <!-- TODOs:
 1. Create 3 Boxes using the div element.
 2. Set their sizes to 200px heigh by 200px wide.
@@ -28,6 +13,59 @@ Hint: Use the CSS inspector in Chrome.
 8. Set the 3rd div to have a 10px border 
 9. Set the margins for the divs so that each box corner touches the other. (See the goal image)
 -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Box Model</title>
+  <style>
+    div {
+          height: 200px;
+          width: 200px;
+        }
+    p {
+        margin: 0;
+      }
+
+    #first  {
+            background-color: blueviolet;
+            padding: 20px;
+            border: 10px solid black
+            }
+    #second {
+            background-color: yellow;
+            border:solid black ;
+            border-width: 20px 10px 20px 10px;
+            margin-left: 260px;
+            }
+    
+    #third  {
+            background-color: red;
+            border: 10px, solid black;
+            margin-left: 40px;
+            border-width:10px 20px 10px 20px;
+            }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div id=first>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at sapien porttitor urna elementum lacinia. In
+    id magna pulvinar, ultricies lorem id, vehicula elit. Aliquam eu luctus nisl, vitae pellentesque magna. Phasellus
+    dolor metus, laoreet ac convallis sit amet, efficitur sed dolor.</p>
+  </div>
+  <div id="second">
+  </div>
+  <div id="third">
+  </div>
 
 </body>
 
