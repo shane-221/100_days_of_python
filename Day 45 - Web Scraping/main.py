@@ -47,5 +47,8 @@ for tag in all_anchor_tags:
 # Can also search using the identifiers to find the tag of the identifier( class and tags)
 heading = soup.find(name= "h1" , id="name")
             #soup.find is only applicable for a first instance of an event
-            #same thing applied to clas function. Class is a reserve function. Onely can be used to create classes. Therefore
-            ## need an underscore when you cal it 
+            #same thing applied to clas function. Class is a reserve function. Onely can be used to create classes.
+            # Therefore, need an underscore when you cal it
+section_heading = soup.find(name= "h3", class_ ="heading")
+
+#------------------------------------There are cases where this proces does not work-----------------------------------#
