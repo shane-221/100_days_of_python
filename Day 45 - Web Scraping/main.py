@@ -51,4 +51,10 @@ heading = soup.find(name= "h1" , id="name")
             # Therefore, need an underscore when you cal it
 section_heading = soup.find(name= "h3", class_ ="heading")
 
-#------------------------------------There are cases where this proces does not work-----------------------------------#
+#------------------------------------The use of the css selector-------------------------------------------------------#
+company_url= soup.select_one(selector="p a")
+## in the css code this should come out as p a {................}
+
+# Can use the # class aa the selector within the css code.
+    # can also do it by class
+soup.select(selector =".heading" )
