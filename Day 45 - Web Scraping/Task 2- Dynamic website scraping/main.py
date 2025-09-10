@@ -38,4 +38,12 @@ article_upvotes = [score.getText()for score in soup.find_all(name="span", class_
 article_upvotes = [int(i.split()[0]) for i in article_upvotes]
 print(article_upvotes)
 
+print(article_list_text)
+
+
+# Todo: Find the title, link of the item with the highest number of upvotes.
+index = article_upvotes.index(max(article_upvotes))
+popular_article = article_list_text[index]
+popular_link = articles_list_links[index]
+
 
