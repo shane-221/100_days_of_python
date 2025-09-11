@@ -22,4 +22,9 @@ for tag in heading:
         result += i + " "
     movie_titles.append(result.strip(''))
 
-movie_titles =
+movie_titles = [i.strip() for i in movie_titles]
+
+
+with open("./ Movie List", mode= "w") as file:
+    for i in range(1, 100):
+        
