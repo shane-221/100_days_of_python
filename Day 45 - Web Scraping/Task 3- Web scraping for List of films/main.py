@@ -25,6 +25,8 @@ for tag in heading:
 movie_titles = [i.strip() for i in movie_titles]
 
 
-with open("./ Movie List", mode= "w") as file:
-    for i in range(1, 100):
-        
+with open("./Movie_List.txt", mode= "a") as file:
+    n=0
+    for i in movie_titles:
+        n= n+1
+        file.write(f"{n} :{i}\n")

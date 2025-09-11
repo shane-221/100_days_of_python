@@ -1,0 +1,41 @@
+1 :Stand By Me
+2 :Raging Bull
+3 :Amelie
+4 :Titanic
+5 :Good Will Hunting
+6 :Arrival
+7 :Lost In Translation
+8 :The Princess Bride
+9 :The Terminator
+10 :The Prestige
+11 :No Country For Old Men
+12 :Shaun Of The Dead
+13 :The Exorcist
+14 :Predator
+15 :Indiana Jones And The Last Crusade
+16 :Léon
+17 :Rocky
+18 :True Romance
+19 :Some Like It Hot
+20 :The Social Network
+21 :Spirited Away
+22 :Captain America: Civil War
+23 :Oldboy
+24 :Toy Story
+25 :A Clockwork Orange
+26 :Fargo
+27 :Mulholland Dr.
+28 :Seven Samurai
+29 :Rear Window
+30 :Hot Fuzz
+31 :The Lion King
+32 :Singin' In The Rain
+33 :Ghostbusters
+34 :Memento
+35 :Return Of The Jedi
+36 :Avengers Assemble
+37 :L.A. Confidential
+38 :Donnie Darko
+39 :La La Land
+40 :Forrest Gump
+41 :American Beauty
