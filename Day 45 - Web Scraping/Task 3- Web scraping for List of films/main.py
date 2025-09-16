@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
-
+from idna import encode
 
 #Todo: ------------------------------------Getting the list of movies in TXT Format------------------------------------#
 connection = requests.get(url="https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/")
@@ -24,9 +23,8 @@ for tag in heading:
 
 movie_titles = [i.strip() for i in movie_titles]
 
-
-with open("./Movie_List.txt", mode= "a") as file:
-    n=0
+n=100
+with open("./Movie_List.txt", mode= "w", encoding ="UTF-8") as file:
     for i in movie_titles:
-        n= n+1
         file.write(f"{n} :{i}\n")
+        n = n - 1
