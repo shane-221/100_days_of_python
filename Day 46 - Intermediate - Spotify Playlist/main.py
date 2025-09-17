@@ -9,6 +9,7 @@ year= input("Which year do you want to travel to? Type the date in this format -
 USER_AGENT ="Windows NT 10.0; Win64; x64"
 header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
+
 #-------------------------------------Get the songs list  by web scraping ---------------------------------------------#
 # Todo: get the website data
 data = requests.get(url=  f"https://www.billboard.com/charts/hot-100/{year}", headers= header )
@@ -30,9 +31,9 @@ for i in song_block:
 ##w with someone's account
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
-                    client_id="42bb3e057650403a977df30a3da39f6a",
-                    redirect_uri="https://example.com/callback",
-                    client_secret="ee906458948f49c18301cbe00180da33",
+                    client_id="",
+                    redirect_uri="",
+                    client_secret="",
                     scope= "playlist-modify-private"
                                     ))
 user_id = sp.current_user()["display_name"]
@@ -43,9 +44,25 @@ user_id = sp.current_user()["display_name"]
 uri_list = []
 
 for song in song_names:
-    search = sp.search(q=f"{song}:{year}", type="track")
-    uri_list.append(search["tracks"]["href"])
+    try:
+        search = sp.search(q=f"{song}:{year}", type="track")
+        uri_list.append(search["tracks"]["href"])
+    except Exception as e:
+        print(f" Not Found. Error Code: {e}")
 
-uri_list.insert(0,uri_list)
-pprint.pp(uri_list)
 
+###### Adding the pprint package to see the code more cleanly
+#     uri_list.insert(0,uri_list)
+#     pprint.pp(uri_list)
+
+
+#-------------------------------------Adding the songs to the Playlist-------------------------------------------------#
+## The billboard is the app. Therefore, need to create the app within the playlist.
+playlist = sp.user_playlist_create(user=user_id, name=f"{year} Billboard 100", public=False)
+print(playlist)
+
+# for i in uri_list:
+#     add =  sp.playlist_add_items(
+#                             playlist_id="42bb3e057650403a977df30a3da39f6a",
+#                             items =i
+#                                 )
