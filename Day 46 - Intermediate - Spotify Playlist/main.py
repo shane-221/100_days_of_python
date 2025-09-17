@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import spotipy
-
+from spotipy.oauth2 import SpotifyOAuth
 year= input("Which year do you want to travel to? Type the date in this format - YYYY-MM-DD : ")
 #---------------------------------------- Variables-------------------------------------------------------------------#
 USER_AGENT ="Windows NT 10.0; Win64; x64"
@@ -26,13 +26,14 @@ for i in song_block:
 #-----------------------------------------Spotipy----------------------------------------------------------------------#
 # Since the code isw being run on behalf of a user- Need to specifically use a module that allows you to interact
 ##w with someone's account
-sp = spotipy.oauth2.SpotifyOAuth(
+sp = spotipy.Spotify(
+    auth_manager=SpotifyOAuth(
                     client_id="42bb3e057650403a977df30a3da39f6a",
                     redirect_uri="https://example.com/callback",
                     client_secret="ee906458948f49c18301cbe00180da33",
                     scope= "playlist-modify-private"
-                                    )
-user_id = spotipy.current_user()
+                                    ))
+user_id = sp.current_user()["display_name"]
 print(user_id)
 
 
