@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import pprint
+
 year= input("Which year do you want to travel to? Type the date in this format - YYYY-MM-DD : ")
 #---------------------------------------- Variables-------------------------------------------------------------------#
 USER_AGENT ="Windows NT 10.0; Win64; x64"
@@ -23,8 +25,8 @@ for i in song_block:
     heading = i.find(name ="h3")
     song_names.append(heading.get_text(strip= True))
 
-#-----------------------------------------Spotipy----------------------------------------------------------------------#
-# Since the code isw being run on behalf of a user- Need to specifically use a module that allows you to interact
+#-----------------------------Spotipy: connect to spotify and get username --------------------------------------------#
+# Since the code isw being run on behalf of a user. Need to specifically use a module that allows you to interact
 ##w with someone's account
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
@@ -34,6 +36,16 @@ sp = spotipy.Spotify(
                     scope= "playlist-modify-private"
                                     ))
 user_id = sp.current_user()["display_name"]
-print(user_id)
 
+
+
+#-------------------------------------Search Spotify for the Songs-----------------------------------------------------#
+uri_list = []
+
+for song in song_names:
+    search = sp.search(q=f"{song}:{year}", type="track")
+    uri_list.append(search["tracks"]["href"])
+
+uri_list.insert(0,uri_list)
+pprint.pp(uri_list)
 
