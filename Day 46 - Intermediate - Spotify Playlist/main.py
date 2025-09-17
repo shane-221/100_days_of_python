@@ -1,13 +1,13 @@
 import requests
-import bs4
 from bs4 import BeautifulSoup
+import spotipy
 
 year= input("Which year do you want to travel to? Type the date in this format - YYYY-MM-DD : ")
 #---------------------------------------- Variables-------------------------------------------------------------------#
 USER_AGENT ="Windows NT 10.0; Win64; x64"
 header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
-#-------------------------------------Using API to scrape the website--------------------------------------------------#
+#-------------------------------------Get the songs list  by web scraping ---------------------------------------------#
 # Todo: get the website data
 data = requests.get(url=  f"https://www.billboard.com/charts/hot-100/{year}", headers= header )
 website = data.text
@@ -23,7 +23,16 @@ for i in song_block:
     heading = i.find(name ="h3")
     song_names.append(heading.get_text(strip= True))
 
-songs_list = [ names.strip for names in song_names]
-
+#-----------------------------------------Spotipy----------------------------------------------------------------------#
+# Since the code isw being run on behalf of a user- Need to specifically use a module that allows you to interact
+##w with someone's account
+sp = spotipy.oauth2.SpotifyOAuth(
+                    client_id="42bb3e057650403a977df30a3da39f6a",
+                    redirect_uri="https://example.com/callback",
+                    client_secret="ee906458948f49c18301cbe00180da33",
+                    scope= "playlist-modify-private"
+                                    )
+user_id = spotipy.current_user()
+print(user_id)
 
 
