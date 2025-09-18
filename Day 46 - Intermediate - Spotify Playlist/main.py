@@ -55,16 +55,12 @@ for song in song_names:
         print(f" Not Found. Error Code: {e}")
 
 
-#### Adding the pprint package to see the code more cleanly
-uri_list.insert(0,uri_list)
-pprint.pp(uri_list)
-#
-#
+
 # #-------------------------------------Adding the songs to the Playlist-------------------------------------------------#
 ## The billboard is the app. Therefore, need to create the app within the playlist.
 playlist = sp.user_playlist_create(user=user_id, name=f"{year} Billboard 100", public=False)
 
 sp.playlist_add_items(
-                        playlist_id=os.getenv("playlist_id"),
+                        playlist_id=playlist["id"],
                         items =uri_list
                             )
