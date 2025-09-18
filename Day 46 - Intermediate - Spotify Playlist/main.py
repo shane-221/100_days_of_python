@@ -1,8 +1,12 @@
+import os
+
 import requests
 from bs4 import BeautifulSoup
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pprint
+from dotenv import load_dotenv
+load_dotenv()
 
 year= input("Which year do you want to travel to? Type the date in this format - YYYY-MM-DD : ")
 #---------------------------------------- Variables-------------------------------------------------------------------#
@@ -31,9 +35,9 @@ for i in song_block:
 ##w with someone's account
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
-                    client_id="",
-                    redirect_uri="",
-                    client_secret="",
+                    client_id= os.getenv("client_id"),
+                    redirect_uri=os.getenv("redirect_uri"),
+                    client_secret=os.getenv("client_secret"),
                     scope= "playlist-modify-private"
                                     ))
 user_id = sp.current_user()["display_name"]
@@ -51,9 +55,9 @@ for song in song_names:
         print(f" Not Found. Error Code: {e}")
 
 
-###### Adding the pprint package to see the code more cleanly
-#     uri_list.insert(0,uri_list)
-#     pprint.pp(uri_list)
+##### Adding the pprint package to see the code more cleanly
+uri_list.insert(0,uri_list)
+pprint.pp(uri_list)
 
 
 #-------------------------------------Adding the songs to the Playlist-------------------------------------------------#
