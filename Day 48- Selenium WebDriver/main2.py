@@ -25,4 +25,14 @@ print(search_bar.get_attribute("placeholder"))
 button = driver.find_element(By.ID, value = "submit")
 print( button.size)
 
+# using the css selector
+documentation_link =  driver.find_element(By.CSS_SELECTOR, value = ".documentation- widget a")
+
+
+#Use of the x path to find a specific element
+bug_link = driver.find_element(By.XPATH, value="")
+print ( bug_link.text)
+
+
+
 driver.quit()
