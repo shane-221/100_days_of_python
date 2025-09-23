@@ -21,4 +21,8 @@ print(f"{price_dollar}.{price_pennies}")
 search_bar = driver.find_element(By.NAME,"q")
 print(search_bar.get_attribute("placeholder"))
 
+#Finding stuff by ID
+button = driver.find_element(By.ID, value = "submit")
+print( button.size)
+
 driver.quit()
