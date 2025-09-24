@@ -14,5 +14,13 @@ driver.get("https://www.python.org/")
 # Broken down by sections until Im at the list functions
 header = driver.find_element(By.CSS_SELECTOR, value=".event-widget")
 ul= header.find_element(By.CSS_SELECTOR, value = ".menu")
+items = ul.find_elements(By. TAG_NAME, value ="li")
 
+# Using the sections to create the list of items
+events={}
+n=0
+for event in items:
+    date =event.find_element(By.TAG_NAME, value= "time")
+    title = event.find_element(By. TAG_NAME, value = "a")
+    events.append({f"{n}:"{f"{time} :{date}, name:{title}"})
 #driver.quit()
