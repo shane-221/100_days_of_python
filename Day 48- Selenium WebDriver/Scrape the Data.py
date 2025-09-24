@@ -22,5 +22,8 @@ n=0
 for event in items:
     date =event.find_element(By.TAG_NAME, value= "time")
     title = event.find_element(By. TAG_NAME, value = "a")
-    events.append({f"{n}:"{f"{time} :{date}, name:{title}"})
+    events[n] = {f"time:2025-{date.text}, name :{title.text}"}
+    n = n + 1
+print(events)
+
 #driver.quit()
