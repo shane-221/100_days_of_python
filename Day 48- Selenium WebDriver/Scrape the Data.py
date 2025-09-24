@@ -10,7 +10,9 @@ chrome_options.add_experimental_option("detach", True)
 driver=webdriver.Chrome(options =chrome_options)
 driver.get("https://www.python.org/")
 
-header = driver.find_element(By.CLASS_NAME, value="event-widget")
-print( header.)
+
+# Broken down by sections until Im at the list functions
+header = driver.find_element(By.CSS_SELECTOR, value=".event-widget")
+ul= header.find_element(By.CSS_SELECTOR, value = ".menu")
 
 #driver.quit()
