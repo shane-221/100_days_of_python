@@ -17,7 +17,3 @@ numbers = banner.find_elements(By.CSS_SELECTOR, value="a[href='/wiki/Special:Sta
 
 data =  [i.text for i in numbers]
 print(data[1])
-
-
-
-
