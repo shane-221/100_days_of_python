@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 #---------------------------------------Opening the page arguments-----------------------------------------------------#
 chrome_options= webdriver.ChromeOptions()
 chrome_options.add_experimental_option(name= "detach", value= True )
-chrome_options.add_argument("--headless")
+#chrome_options.add_argument("--headless")
 
 #--------------------------------------running the css code------------------------------------------------------------#
 driver = webdriver.Chrome(options = chrome_options)
