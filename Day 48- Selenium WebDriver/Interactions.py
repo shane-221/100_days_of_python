@@ -17,3 +17,18 @@ numbers = banner.find_elements(By.CSS_SELECTOR, value="a[href='/wiki/Special:Sta
 
 data =  [i.text for i in numbers]
 print(data[1])
+
+
+
+#-------------------------------------------- Click function----------------------------------------------------------#
+section = driver.find_element(By.ID, value="articlecount")
+section.click()
+
+
+#--------------------------------------------Find element by link text-------------------------------------------------#
+all_portals = driver.find_element(By.LINK_TEXT, value = "Content portals")
+all_portals.click()
+
+#-------------------------------------------- searching with text------------------------------------------------------#
+search = driver.find_element(By.NAME, value= "search")
+search.send_keys("Python")
