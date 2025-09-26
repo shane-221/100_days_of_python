@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 #---------------------------------------Opening the page arguments-----------------------------------------------------#
@@ -32,3 +33,4 @@ all_portals.click()
 #-------------------------------------------- searching with text------------------------------------------------------#
 search = driver.find_element(By.NAME, value= "search")
 search.send_keys("Python")
+search.send_keys(Keys.ENTER)
