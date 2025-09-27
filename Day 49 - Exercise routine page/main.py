@@ -1,9 +1,11 @@
 from selenium import webdriver
 import os
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from dotenv import load_dotenv
 load_dotenv()
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+
 
 #Todo:---------------------------------------------- Prep--------------------------------------------------------------#
 
@@ -22,6 +24,7 @@ chrome_options.add_argument(f"--user-data-dir={user_data_dir}")
 #Todo---------------------------------------------Running the website-------------------------------------------------#
 
 driver = webdriver.Chrome( options= chrome_options)
+wait = WebDriverWait(driver, 2)
 driver.get("https://appbrewery.github.io/gym/")
 
 # Todo--------------------------------------- Logging into the website-------------------------------------------------#
@@ -41,3 +44,14 @@ password.send_keys(password_id)
 
 login= driver.find_element(By.ID, value="submit-button")
 login.click()
+
+            # Wait for schedule page to load
+wait.until(ec.presence_of_element_located((By.ID, "schedule-page")))
+
+
+# Todo---------------------------------------Booking classes-----------------------------------------------------------#
+
+
+        # Choosing The day
+date = driver.find_element(By.ID, value= "day-group-tue,-sep-30")
+date.text
