@@ -56,25 +56,30 @@ wait.until(ec.presence_of_element_located((By.ID, "schedule-page")))
 date = driver.find_element(By.ID, value= "day-group-mon,-oct-6")
 activities = date.find_elements(By.CLASS_NAME, value="ClassCard_card__KpCx5")
 
+
             # Adding the events of the daya into a dict
 for i in activities:
                 # Check to see if any classes are not fully booked and printing the message
-    have_booked = i.get_attribute("data-user-booked")
-    fully_booked = i.get_attribute("data-available-spots")
-    waitlisted = i.get_attribute("data-user-waitlisted")
-    print(type(have_booked))
-    event_data = i.get_attribute("id").split("-")                           # Getting the event and time data to present
-    event = event_data[2]
-    time =event_data[-1]
+    have_booked = str(i.get_attribute("data-user-booked")).strip().lower()
+    fully_booked = str(i.get_attribute("data-class-status")).strip().lower()
+    waitlisted = str(i.get_attribute("data-user-waitlisted")).strip().lower()
 
-    if str(have_booked)=="true":                                                 # Check 1: have they booked it
+    event_data = i.get_attribute("id").split("-")                         # Getting the event and time data to present
+    event = str(event_data[2]).strip().lower()
+    time =str(event_data[-1]).strip().lower()
+
+
+
+    if have_booked=="true":                                               # Check 1: have they booked it
         print(f"✓ Have booked : {event} on Mon, Oct 6 at {time}")
         print("Script started")
-    elif str(fully_booked)=="true":                                              # Check 2: Can they book it ?
-        print(f"✓ Event full : {event} on Mon, Oct 6 at {time}")
-    elif str(fully_booked)=="false":                                             # Check 3: Are they on the waitlist
-        if str(waitlisted)=="true":
+
+    elif  fully_booked=="full":                                           # Check 2: Can they book it ?
+            print(f"✓ Event full : {event} on Mon, Oct 6 at {time}")
+    elif fully_booked=="available":                                       # Check 3: Are they on the waitlist
+        if waitlisted=="true":
             print(f"✓ Already on waitlist: {event} on Mon, Oct 6 at {time}")
-        else:                                                               # Check 4 If not on the Waitlist: Ask to check
-            print(f"{event} at {time}")
+        else:                                                             # Check 4 If not on the Waitlist: Ask to check
+            print(f"User Input required: {event.capitalize()} at {time}")
             response = input("Would you like to be waitlisted for this event?")
+                                                                        # Checking the response to  be waitlisted
