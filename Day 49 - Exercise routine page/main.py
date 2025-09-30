@@ -62,7 +62,7 @@ for i in activities:
     have_booked = i.get_attribute("data-user-booked")
     fully_booked = i.get_attribute("data-available-spots")
     waitlisted = i.get_attribute("data-user-waitlisted")
-
+    print(type(have_booked))
     event_data = i.get_attribute("id").split("-")                           # Getting the event and time data to present
     event = event_data[2]
     time =event_data[-1]
