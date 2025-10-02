@@ -72,14 +72,13 @@ for i in activities:
 
     if have_booked=="true":                                               # Check 1: have they booked it
         print(f"✓ Have booked : {event} on Mon, Oct 6 at {time}")
-        print("Script started")
 
-    elif  fully_booked=="full":                                           # Check 2: Can they book it ?
+    else:
+         if fully_booked=="full":                                         # Check 2: Can they book it ?
             print(f"✓ Event full : {event} on Mon, Oct 6 at {time}")
-    elif fully_booked=="available":                                       # Check 3: Are they on the waitlist
-        if waitlisted=="true":
-            print(f"✓ Already on waitlist: {event} on Mon, Oct 6 at {time}")
-        else:                                                             # Check 4 If not on the Waitlist: Ask to check
-            print(f"User Input required: {event.capitalize()} at {time}")
-            response = input("Would you like to be waitlisted for this event?")
-                                                                        # Checking the response to  be waitlisted
+            response = input("Would you like to be waitlisted for this event? Yes or No?")
+
+                                                                           # Check 3: Are they on the waitlist
+         elif fully_booked == "available":
+                print(f"✓ Event Available : {event} on Mon, Oct 6 at {time}")
+                response = input("Would you like to book this event? Yes or No?")
