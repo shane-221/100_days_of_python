@@ -6,6 +6,11 @@ load_dotenv()
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
+DATE = "day-group-mon,-oct-6"
+Classes_booked = 0
+Waitlists_joined = 0
+Total_classes_processed =  0
+
 
 #Todo:---------------------------------------------- Prep--------------------------------------------------------------#
 
@@ -57,12 +62,13 @@ wait.until(ec.presence_of_element_located((By.ID, "schedule-page")))
 
         # Todo:-------------- Getting all the important data prepared ------------------#
             # Choosing The day
-date = driver.find_element(By.ID, value= "day-group-mon,-oct-6")
+date = driver.find_element(By.ID, value= DATE)
 activities = date.find_elements(By.CLASS_NAME, value="ClassCard_card__KpCx5")
 
 
             # Adding the events of the daya into a dict
 for i in activities:
+    Total_classes_processed+=1
                 # Check to see if any classes are not fully booked and printing the message
     have_booked = str(i.get_attribute("data-user-booked")).strip().lower()
     fully_booked = str(i.get_attribute("data-class-status")).strip().lower()
@@ -84,6 +90,7 @@ for i in activities:
             #Todo:----------------------Checking througgh the logic to click ther buttons--------------#
     if have_booked=="true":                                               # Check 1: have they booked it
         print(f"✓ Have booked : {event} on Mon, Oct 6 at {time}")
+        Classes_booked+=1
 
     else:
          if fully_booked=="full":                                         # Check 2: Can they book it ?
@@ -91,6 +98,7 @@ for i in activities:
             response1 = input("Would you like to be waitlisted for this event? Yes or No?").lower().strip()
             if response1=="yes":
                 button.click()
+                Waitlists_joined+=1
             else:
                 pass
                                                                    # Check 3: Are they on the waitlist
@@ -99,6 +107,14 @@ for i in activities:
                 response2 = input("Would you like to book this event? Yes or No?").lower().strip()
                 if response2=="yes":
                     button.click()
+                    Classes_booked+=1
                 else:
                     pass
 
+
+print(f"""
+      --- BOOKING SUMMARY ---
+        Classes booked: {Classes_booked}
+        Waitlists joined: {Waitlists_joined}
+        Total classes processed: {Total_classes_processed}
+      """)
