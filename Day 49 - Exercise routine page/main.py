@@ -49,9 +49,13 @@ login.click()
 wait.until(ec.presence_of_element_located((By.ID, "schedule-page")))
 
 
+
+
 # Todo---------------------------------------Booking classes-----------------------------------------------------------#
 
 
+
+        # Todo:-------------- Getting all the important data prepared ------------------#
             # Choosing The day
 date = driver.find_element(By.ID, value= "day-group-mon,-oct-6")
 activities = date.find_elements(By.CLASS_NAME, value="ClassCard_card__KpCx5")
@@ -68,17 +72,33 @@ for i in activities:
     event = str(event_data[2]).strip().lower()
     time =str(event_data[-1]).strip().lower()
 
+            # Todo:---------------------Click Functions --------------------------------------#
+    try:
+        all_clicks = i.find_element(By.CLASS_NAME, value="ClassCard_cardActions__tVZBm")
+        button = all_clicks.find_element(By.CSS_SELECTOR, value="button")
+        driver.execute_script("arguments[0].scrollIntoView(true);", button)
+    except Exception as e:
+        print (f" Could not find the Button for {event} at {time}: Error {e}")
 
 
+            #Todo:----------------------Checking througgh the logic to click ther buttons--------------#
     if have_booked=="true":                                               # Check 1: have they booked it
         print(f"✓ Have booked : {event} on Mon, Oct 6 at {time}")
 
     else:
          if fully_booked=="full":                                         # Check 2: Can they book it ?
             print(f"✓ Event full : {event} on Mon, Oct 6 at {time}")
-            response = input("Would you like to be waitlisted for this event? Yes or No?")
-
-                                                                           # Check 3: Are they on the waitlist
+            response1 = input("Would you like to be waitlisted for this event? Yes or No?").lower().strip()
+            if response1=="yes":
+                button.click()
+            else:
+                pass
+                                                                   # Check 3: Are they on the waitlist
          elif fully_booked == "available":
                 print(f"✓ Event Available : {event} on Mon, Oct 6 at {time}")
-                response = input("Would you like to book this event? Yes or No?")
+                response2 = input("Would you like to book this event? Yes or No?").lower().strip()
+                if response2=="yes":
+                    button.click()
+                else:
+                    pass
+
