@@ -5,8 +5,9 @@ from dotenv import load_dotenv
 load_dotenv()
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-
-DATES = ["day-group-mon,-oct-6"]
+from datetime import datetime
+# Todo---------------------------------------------- Variables---------------------------------------------------------#
+DATES = []
 Classes_booked = 0
 Waitlists_joined = 0
 Total_classes_processed =  0
@@ -14,7 +15,33 @@ Booked_classes_details =[]
 Waiting_classes_details=[]
 
 
-#Todo:---------------------------------------------- Prep--------------------------------------------------------------#
+
+
+#Todo:-----------------------------------Getting a list of dates to look over------------------------------------------#
+def dates_for_tracker():
+    date_chosen = input("Enter a date (e.g., YYYY-MM--DD): ").strip()
+                                                                                                                        # Converting the date chosen to correct format
+    try:
+        parsed_date = datetime.strptime(date_chosen, "%Y-%m-%d")
+        formatted = f"day-group-{parsed_date.strftime('%a').lower()},-{parsed_date.strftime('%b').lower()}-{parsed_date.day}"
+        DATES.append(formatted)
+
+    except ValueError:
+        print(" Invalid format . Please use 'Monday, October 6 2025'")
+        exit()
+                                                                                                                        # While loop to check if there are more dates
+dates_for_tracker()
+while dates_section:
+    repeat = input("Would you like to add another day? Y or N").lower()
+    if repeat == "y":
+        dates_for_tracker()
+    elif repeat=="n":
+        dates_section= False
+    else:
+        print("Please choose Y or N! ")
+
+
+#Todo:--------------------------------------------Prep for login-------------------------------------------------------#
 
                                                                                                                         #Tells the webpage to stay open
 
