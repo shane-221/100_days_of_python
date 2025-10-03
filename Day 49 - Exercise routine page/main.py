@@ -13,7 +13,7 @@ Waitlists_joined = 0
 Total_classes_processed =  0
 Booked_classes_details =[]
 Waiting_classes_details=[]
-
+dates_section = True
 
 
 
