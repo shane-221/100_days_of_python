@@ -1,2 +1,4 @@
 Note 1: Skipped the verification sections given that I already knew how to do them.
-Note 2: Skipped the role of the network verification since I wont have a use for them 
+Note 2: Skipped the role of the network verification since I wont have a use for them
+
+Steps to improve the code: use classes and functions to break up the code a bit more

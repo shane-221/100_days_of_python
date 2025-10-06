@@ -162,3 +162,4 @@ for i in Booked_classes_details:
     print(i)
 for i in Waiting_classes_details:
     print(i)
+
