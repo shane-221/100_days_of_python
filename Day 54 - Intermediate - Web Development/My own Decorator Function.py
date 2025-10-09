@@ -10,7 +10,7 @@ def speed_calc_decorator(function):
         function()
         end_time =time.time()
         time_taken = end_time-start_time
-        print(f"{function.__name__} run speed :{time_taken}")
+        print(f"{function} run speed :{time_taken}")
     return wrapper_function
 
 @speed_calc_decorator
