@@ -9,7 +9,4 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-# Can use the Termianl to run the Flask app server or use the code below:@
 
-#if __name__ == "__main__":
-    #app.run(debug=True)
