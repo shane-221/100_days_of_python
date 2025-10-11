@@ -61,3 +61,12 @@
 
 ## Intermediate: Web development 
 - **Day 54:** Introduction to Web Development with Flask
+
+## PARTS SKIPPED:
+- **150**
+- **212**
+- **240**
+- **265-266**
+- **297-298**
+- **299-304( DAY 40 TASK)**
+- **Days 51-53**
