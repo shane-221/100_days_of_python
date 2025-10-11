@@ -1,3 +1,5 @@
+# Studsy Materials and Contents 
+---
 ## 🧠 Beginner: Procedural Programming
 
 - **Day 1:** Introduction + Strings + Variables + Casing + Useful functions  
