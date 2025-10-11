@@ -18,9 +18,14 @@ def fast_function():
     for i in range(1000000):
         i * i
 fast_function()
+        # This is what python sees
+        #fast_function = speed_calc_decorator(fast_function)
+        #fast_function()
+
 
 @speed_calc_decorator
 def slow_function():
     for i in range(10000000):
         i * i
 slow_function()
+
