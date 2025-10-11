@@ -1,5 +1,5 @@
 ---
-# Studsy Materials and Contents 
+# Study Materials and Contents 
 ---
 ## 🧠 Beginner: Procedural Programming
 
