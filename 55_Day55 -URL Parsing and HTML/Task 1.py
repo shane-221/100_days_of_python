@@ -24,7 +24,7 @@ def greeting(names, number):
 @app.route("/bye")
 def bye():
     return '<h1> "Bye"</h1>'\
-            '<img scr ="......." width =200>'
+            '<img scr ="......." width =200> '
 
 
 if __name__=="__main__":
