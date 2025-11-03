@@ -11,7 +11,7 @@ app = Flask(__name__)
 def home():
     now = date.today().year
     random_number = random.randint(1,10)
-    return render_template("index.html", num = random_number, years= now)
+    return render_template("blog.html", num = random_number, years= now)
 
 if __name__ == "__main__":
     app.run(debug= True)

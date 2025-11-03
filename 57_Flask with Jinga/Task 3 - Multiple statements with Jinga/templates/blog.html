@@ -1,0 +1,14 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Website</title>
+    </head>
+    <body>
+
+        {% for blog_post in blog%}
+            <h1>{{ blog_post["title"] }}</h1>
+            <h2>{{ blog_post["subtitle"] }}</h2>
+            {% endfor %}
+    </body>
+
+</html>
