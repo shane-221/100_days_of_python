@@ -24,14 +24,21 @@ print(price_data)
 
     # Todo : Pulling the relevant variables out( Current Price, Yesterdays price,and changes
 
+if  "Global Quote" in price_data:
+    close_price=float((price_data["Global Quote"]["08. previous close"]).strip())
+    current_price= float((price_data["Global Quote"]["05. price"]).strip())
 
-close_price=float((price_data["Global Quote"]["08. previous close"]).strip())
-current_price= float((price_data["Global Quote"]["05. price"]).strip())
+    # ------------------------------------------Step 3 ---------------------------------------------------------------#
+    percent_change = float(round((((current_price - close_price) / close_price) * 100), 4))
+
+else:
+    print(f"""
+            Error: 'Global Quote' not found in response.
+            Server Response :{price_data}
+            
+            """)
 
 
-
-#------------------------------------------Step 3 ---------------------------------------------------------------------#
-percent_change = float(round((((current_price- close_price)/ close_price)*100), 4))
 
 #--------------------------------------------------Step 4--------------------------------------------------------------#
 
