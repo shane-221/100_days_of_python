@@ -40,9 +40,8 @@ if price_data<-1 or price_data>1:
     if news_data is None:
         exit()
     else:
-
-    # #--------------------------------------------------Step 5--------------------------------------------------------#
-    # Todo:  If there is news present--- Then need the email needs to be sent to the individual.
-        print(news_data)
+        #--------------------------------------------------Step 5------------------------------------------------------#
+        # Todo:  If there is news present--- Then need the email needs to be sent to the individual.
+        pass
 
 
