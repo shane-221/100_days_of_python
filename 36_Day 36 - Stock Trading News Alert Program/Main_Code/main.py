@@ -5,6 +5,7 @@ from Structures.stock_request_api import *
 from Structures.news_request_api import *
 from dotenv import load_dotenv
 load_dotenv(dotenv_path="../Storage_files/.env")
+from Structures.company_website_section import *
 
 #---------------------------------------------------Constants ---------------------------------------------------------#
 STOCK = "IBM"
@@ -42,6 +43,6 @@ if price_data<-1 or price_data>1:
     else:
         #--------------------------------------------------Step 5------------------------------------------------------#
         # Todo:  If there is news present--- Then need the email needs to be sent to the individual.
-        pass
-
+        CompanyData = CompanyWebsiteSection(stock=STOCK, price_change=price_data, articles = news_data)
+        # This will store the html code into the company data. Now it needs to be placed into the correct section.
 
