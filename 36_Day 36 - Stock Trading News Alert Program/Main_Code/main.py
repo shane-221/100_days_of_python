@@ -1,67 +1,48 @@
 #------------------------------------------------Imports---------------------------------------------------------------#
 
 import os
-from API_Requests.stock_request_api import *
-from API_Requests.news_request_api import *
-
+from Structures.stock_request_api import *
+from Structures.news_request_api import *
+from dotenv import load_dotenv
+load_dotenv(dotenv_path="../Storage_files/.env")
 
 #---------------------------------------------------Constants ---------------------------------------------------------#
 STOCK = "IBM"
 COMPANY_NAME = "IBM"
-PRICE_API_KEY= os.environ.get("PRICE_API_KEY")
-PRICE_url="http://www.alphavantage.co/query?"
-#
-NEWS_URL= "https://newsapi.org/v2/everything?"
-NEWS_API_KEY=os.environ.get("NEWS_API_KEY")
+PRICE_API_KEY= os.getenv("PRICE_API_KEY")
+PRICE_url=os.getenv("PRICE_url")
+
+NEWS_URL= os.getenv("NEWS_URL")
+NEWS_API_KEY=os.getenv("NEWS_API_KEY")
 
 #
 #-------------------------------------------------Step 1 AND 2---------------------------------------------------------#
 
-    # Todo : Running the API reuquest for price using Classes and Exception handling
+    # Todo : Running the API request for price using Classes and Exception handling
 stock =StockApi(STOCK, PRICE_API_KEY, PRICE_url)
+
+    # Price data output would be the percentage change or the exit loop.
 price_data = stock.price_request()
-print(price_data)
-
-    # Todo : Pulling the relevant variables out( Current Price, Yesterdays price,and changes
-
-if  "Global Quote" in price_data:
-    close_price=float((price_data["Global Quote"]["08. previous close"]).strip())
-    current_price= float((price_data["Global Quote"]["05. price"]).strip())
-
-    # ------------------------------------------Step 3 ---------------------------------------------------------------#
-    percent_change = float(round((((current_price - close_price) / close_price) * 100), 4))
-
+if price_data is None:
+    # Printed the response through the api itself
+    exit()
 else:
-    print(f"""
-            Error: 'Global Quote' not found in response.
-            Server Response :{price_data}
-            
-            """)
+    print(price_data)
 
+# #--------------------------------------------------Step 4--------------------------------------------------------------#
 
-
-#--------------------------------------------------Step 4--------------------------------------------------------------#
-
-# Todo: Calrifing condition to send the email
-# if percent_change<-10 or percent_change>10:
+# Todo: Clarifying condition to send the email
+if price_data<-1 or price_data>1:
     # Todo: News email request
-news = NewsApi(stock, NEWS_API_KEY, NEWS_URL)
-news_data = news.news_request()
+    news = NewsApi(STOCK, NEWS_API_KEY, NEWS_URL)
+    news_data = news.news_request()
+    # Need to exit the program if there are no news to present
+    if news_data is None:
+        exit()
+    else:
 
+    # #--------------------------------------------------Step 5--------------------------------------------------------#
+    # Todo:  If there is news present--- Then need the email needs to be sent to the individual.
+        print(news_data)
 
-#--------------------------------------------------Step 5--------------------------------------------------------------#
-
-    # Given the conditions are met. The email needs to0 e sent to the individual.
-#
-# article_list=[ x for x in news_data["articles"]]
-#
-# with open(file= "./ File to Send", mode= "w") as file:
-#     f"{COMPANY_NAME}: {percent_change}"
-#     "Articles:\n"
-#     for i in article_list:
-#         f"""
-#         Title:{source["title"]}\n
-#             Name of the author:{source["author"]}\n
-#             Summary:{source["description"]}\n\n
-#         """
 
