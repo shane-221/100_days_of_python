@@ -8,9 +8,7 @@ class CompanyWebsiteSection:
     def structure (self):
         articles_html = ""
         for a in self.articles:
-            articles_html += f"<li>{a[0]} -- {a[1]} -- {a[2]}\n</li>"
-
-        print(articles_html)
+            articles_html += f"<li>{a[0]} -- {a[1]} -- {a[2]}</li>\n"
 
         return f"""
             <div>

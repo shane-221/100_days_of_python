@@ -6,6 +6,7 @@ from Structures.news_request_api import *
 from dotenv import load_dotenv
 load_dotenv(dotenv_path="../Storage_files/.env")
 from Structures.company_website_section import *
+import datetime
 
 #---------------------------------------------------Constants ---------------------------------------------------------#
 STOCK = "IBM"
@@ -27,17 +28,17 @@ price_data = stock.price_request()
 if price_data is None:
     # Printed the response through the api itself
     exit()
-else:
-    print(price_data)
+
 
 # #--------------------------------------------------Step 4--------------------------------------------------------------#
+today =datetime.date.today()
 
 # Todo: Clarifying condition to send the email
 if price_data<-1 or price_data>1:
     # Todo: News email request
     news = NewsApi(STOCK, NEWS_API_KEY, NEWS_URL)
     news_data = news.news_request()
-    print(news_data)
+
     # Need to exit the program if there are no news to present
     if news_data is None:
         exit()
@@ -51,8 +52,9 @@ if price_data<-1 or price_data>1:
             # Changes the code for the email file
         with open("../Structures/email_format.html", mode="r") as file:
             email_content  = file.read()
-            email_content = email_content.replace("<!-- Inject your code here -->", company_html)
-            print(email_content)
+            final_content = email_content.replace("<!-- Inject your code here -->", company_html)
+            print(final_content)
+
             # Write this new file back to the original file
-        with open("../Structures/email_format.html", mode="w") as file:
-            file.write(email_content)
+        with open(f"../Output_Emails/output_format_{today}.html", mode="w") as file:
+            file.write(final_content)
