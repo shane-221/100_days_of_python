@@ -37,6 +37,7 @@ if price_data<-1 or price_data>1:
     # Todo: News email request
     news = NewsApi(STOCK, NEWS_API_KEY, NEWS_URL)
     news_data = news.news_request()
+    print(news_data)
     # Need to exit the program if there are no news to present
     if news_data is None:
         exit()
@@ -44,5 +45,14 @@ if price_data<-1 or price_data>1:
         #--------------------------------------------------Step 5------------------------------------------------------#
         # Todo:  If there is news present--- Then need the email needs to be sent to the individual.
         CompanyData = CompanyWebsiteSection(stock=STOCK, price_change=price_data, articles = news_data)
-        # This will store the html code into the company data. Now it needs to be placed into the correct section.
-
+        #Todo: Gets the company data in the correct html format
+        company_html = CompanyData.structure()
+        # Todo: Places the data into the correct sectiopn of the txt file
+            # Changes the code for the email file
+        with open("../Structures/email_format.html", mode="r") as file:
+            email_content  = file.read()
+            email_content = email_content.replace("<!-- Inject your code here -->", company_html)
+            print(email_content)
+            # Write this new file back to the original file
+        with open("../Structures/email_format.html", mode="w") as file:
+            file.write(email_content)

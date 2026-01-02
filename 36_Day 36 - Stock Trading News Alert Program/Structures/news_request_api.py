@@ -18,15 +18,18 @@ class NewsApi:
                     "from" : (dt.datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d"),
                     "language" :"en",
                     "sort": "publishedAt",          # By the newest article
-                    "pageSize": "2"
+                    "pageSize": "5"
                         }
 
         # Todo: Sending the request FOR the data
         try:
             news_request = requests.get(url=self.news_url, params= news_parameters)
             data = news_request.json()
+            final_data = []
             if data["totalResults"]!=0:
-                return data
+                for articles in data["articles"]:
+                    final_data.append([articles["source"]["name"], articles["title"], articles["author"]])
+                return final_data
             elif data["totalResults"]==0:
                 print("No results Found")
                 return None
